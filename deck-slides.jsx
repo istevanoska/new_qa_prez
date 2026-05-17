@@ -298,6 +298,41 @@ window.OverviewSlide = () => {
         { id: 5, name: "Equivalence Partitioning", color: "#C4B5FD", short: "EP", desc: "Grouping inputs into equivalent classes." },
     ];
 
+    const tools = [
+        {
+            "id": 1,
+            "name": "Qaze"
+        },
+        {
+            "id": 2,
+            "name": "Dillinger"
+        },
+        {
+            "id": 3,
+            "name": "Excel"
+        },
+        {
+            "id": 4,
+            "name": "Canva"
+        },
+        {
+            "id": 5,
+            "name": "Taiga"
+        },
+        {
+            "id": 6,
+            "name": "IntelliJ"
+        },
+        {
+            "id": 7,
+            "name": "Selenium"
+        },
+        {
+            "id": 8,
+            "name": "JUnit"
+        }
+    ];
+
     return (
 
         <SlideRoot>
@@ -717,9 +752,11 @@ window.OverviewSlide = () => {
 
                     </div>
 
-                    {/* TECHNIQUES */}
+                    {/* TECHNIQUES + TOOLS */}
 
                     <div>
+
+                        {/* TECHNIQUES */}
 
                         <p
                             style={{
@@ -729,14 +766,15 @@ window.OverviewSlide = () => {
                                 marginBottom:"14px"
                             }}
                         >
-                            TESTING TECHNIQUES USED
+                            TESTING TECHNIQUES
                         </p>
 
                         <div
                             style={{
                                 display:"grid",
                                 gridTemplateColumns:"1fr 1fr",
-                                gap:"8px"
+                                gap:"8px",
+                                marginBottom:"22px"
                             }}
                         >
 
@@ -849,6 +887,51 @@ window.OverviewSlide = () => {
 
                         </div>
 
+                        {/* TOOLS */}
+
+                        <p
+                            style={{
+                                color:"rgba(255,255,255,0.3)",
+                                fontSize:"9px",
+                                letterSpacing:"0.4em",
+                                marginBottom:"14px"
+                            }}
+                        >
+                            TOOLS USED
+                        </p>
+
+                        <div
+                            style={{
+                                display:"flex",
+                                flexWrap:"wrap",
+                                gap:"10px"
+                            }}
+                        >
+
+                            {
+                                tools.map((tool)=>(
+
+                                    <div
+                                        key={tool.id}
+                                        style={{
+                                            padding:"10px 16px",
+                                            borderRadius:"12px",
+                                            background:"rgba(255,255,255,0.05)",
+                                            border:"1px solid rgba(255,255,255,0.08)",
+                                            color:"rgba(255,255,255,0.78)",
+                                            fontSize:"12px",
+                                            fontWeight:500,
+                                            backdropFilter:"blur(10px)"
+                                        }}
+                                    >
+                                        {tool.name}
+                                    </div>
+
+                                ))
+                            }
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -860,6 +943,7 @@ window.OverviewSlide = () => {
     );
 
 }
+
 /* ---------------- SPRINT 1 — bold editorial style ---------------- */
 
 window.Sprint1Slide = () => {
@@ -2216,7 +2300,7 @@ window.Slides = [
     window.Sprint1Slide,
     window.Sprint2Slide,
     window.Sprint3Slide,
+    window.ConclusionSlide,
     window.FinalSlide,
-    window.ConclusionSlide
 
 ]
