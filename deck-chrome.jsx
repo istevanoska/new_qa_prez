@@ -1,41 +1,76 @@
 const {
-    useState,
-    useEffect
+    useEffect,
+    useState
 } = React;
 
-const SlideRoot = ({
-                       children,
-                       hero = false
-                   }) => (
+function Particles(){
 
-    <section
-        className="slide-enter"
-        style={{
-            width:"100vw",
-            height:"100vh",
-            position:"relative",
-            overflow:"hidden"
-        }}
-    >
+    return(
 
-        <div className="hero-glow"></div>
+        <>
+            {
 
-        {hero && <div className="grid-bg"></div>}
+                [...Array(35)].map((_,i)=>(
 
-        <div
+                    <div
+                        key={i}
+                        className="particle"
+                        style={{
+
+                            left:`${Math.random()*100}%`,
+                            width:`${Math.random()*4+2}px`,
+                            height:`${Math.random()*4+2}px`,
+                            animationDuration:`${Math.random()*15+10}s`,
+                            animationDelay:`-${Math.random()*20}s`
+
+                        }}
+                    />
+
+                ))
+
+            }
+        </>
+
+    )
+
+}
+
+function SlideRoot({children}){
+
+    return(
+
+        <section
+            className="slide"
             style={{
+                width:"100vw",
+                height:"100vh",
                 position:"relative",
-                zIndex:2,
-                width:"100%",
-                height:"100%"
+                overflow:"hidden"
             }}
         >
-            {children}
-        </div>
 
-    </section>
+            <Particles/>
 
-);
+            <div className="hero-glow"></div>
+
+            <div className="grid"></div>
+
+            <div
+                style={{
+                    position:"relative",
+                    zIndex:2,
+                    width:"100%",
+                    height:"100%"
+                }}
+            >
+                {children}
+            </div>
+
+        </section>
+
+    )
+
+}
 
 function useCountUp(target,{active}){
 
@@ -49,7 +84,7 @@ function useCountUp(target,{active}){
 
         const interval = setInterval(()=>{
 
-            current += Math.ceil(target / 40);
+            current += Math.ceil(target / 50);
 
             if(current >= target){
 
@@ -60,7 +95,7 @@ function useCountUp(target,{active}){
 
             setCount(current);
 
-        },40);
+        },30);
 
         return ()=>clearInterval(interval);
 
@@ -73,4 +108,4 @@ function useCountUp(target,{active}){
 window.Chrome = {
     SlideRoot,
     useCountUp
-};
+}

@@ -3,9 +3,8 @@ const {
 } = React;
 
 const Slides = window.Slides;
-const SlideMeta = window.SlideMeta;
 
-function Presentation(){
+function App(){
 
     const [current,setCurrent] = useState(0);
 
@@ -17,7 +16,7 @@ function Presentation(){
             setCurrent(current + 1);
         }
 
-    };
+    }
 
     const prev = ()=>{
 
@@ -25,11 +24,11 @@ function Presentation(){
             setCurrent(current - 1);
         }
 
-    };
+    }
 
     React.useEffect(()=>{
 
-        const onKey = (e)=>{
+        const handle = (e)=>{
 
             if(e.key === "ArrowRight"){
                 next();
@@ -39,13 +38,13 @@ function Presentation(){
                 prev();
             }
 
-        };
+        }
 
-        window.addEventListener("keydown",onKey);
+        window.addEventListener("keydown",handle);
 
-        return ()=>window.removeEventListener("keydown",onKey);
+        return ()=>window.removeEventListener("keydown",handle);
 
-    });
+    },[current])
 
     return(
 
@@ -56,20 +55,21 @@ function Presentation(){
             <div
                 style={{
                     position:"fixed",
-                    top:"30px",
-                    left:"40px",
-                    zIndex:100
+                    top:"28px",
+                    left:"50px",
+                    zIndex:9999
                 }}
             >
 
                 <p
                     style={{
                         color:"#8EA4FF",
-                        fontWeight:"600",
-                        letterSpacing:"0.3em"
+                        letterSpacing:"0.45em",
+                        fontWeight:"700",
+                        fontSize:"14px"
                     }}
                 >
-                    NETCETERA QA
+                    FINKI x NETCETERA
                 </p>
 
             </div>
@@ -77,10 +77,11 @@ function Presentation(){
             <div
                 style={{
                     position:"fixed",
-                    top:"30px",
-                    right:"40px",
-                    zIndex:100,
-                    color:"rgba(255,255,255,0.5)"
+                    top:"28px",
+                    right:"50px",
+                    zIndex:9999,
+                    color:"rgba(255,255,255,0.5)",
+                    fontSize:"20px"
                 }}
             >
                 {String(current + 1).padStart(2,"0")}
@@ -89,17 +90,23 @@ function Presentation(){
             <div
                 style={{
                     position:"fixed",
-                    bottom:"30px",
-                    right:"40px",
+                    bottom:"45px",
+                    right:"50px",
                     display:"flex",
-                    gap:"12px",
-                    zIndex:100
+                    gap:"14px",
+                    zIndex:999999
                 }}
             >
 
                 <button
                     className="btn"
                     onClick={prev}
+                    style={{
+                        width:"70px",
+                        height:"70px",
+                        borderRadius:"50%",
+                        fontSize:"28px"
+                    }}
                 >
                     ←
                 </button>
@@ -107,6 +114,12 @@ function Presentation(){
                 <button
                     className="btn"
                     onClick={next}
+                    style={{
+                        width:"70px",
+                        height:"70px",
+                        borderRadius:"50%",
+                        fontSize:"28px"
+                    }}
                 >
                     →
                 </button>
@@ -115,10 +128,10 @@ function Presentation(){
 
         </div>
 
-    );
+    )
 
 }
 
 ReactDOM.createRoot(
     document.getElementById("root")
-).render(<Presentation />);
+).render(<App/>)
