@@ -1090,7 +1090,6 @@ window.Sprint1Slide = () => {
                         padding: "20px 24px",
                         maxWidth: "460px",
                         boxShadow: "0 0 40px rgba(97,230,216,0.06)",
-                        zoom:1.2
                     }}>
                         {/* card header */}
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
@@ -1130,7 +1129,7 @@ window.Sprint1Slide = () => {
                     gap: "0",
                     position: "relative",
                     zIndex: 2,
-                    zoom:1.2
+                    zoom: -1.2
                 }}>
 
                     {/* VERIFIED LABEL */}
