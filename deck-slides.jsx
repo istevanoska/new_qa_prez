@@ -1431,7 +1431,7 @@ window.Sprint2Slide = () => {
                         {[
                             { icon: "🖥", label: "Desktop — Tamara",    color: "#8EA4FF" },
                             { icon: "📱", label: "Tablet — Leonida",     color: "#61E6D8" },
-                            { icon: "📱", label: "Mobile — docx report", color: "#FFB86B" },
+                            { icon: "📱", label: "Mobile — Ilina", color: "#FFB86B" },
                         ].map((p, i) => (
                             <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "7px 12px", borderRadius: "10px", background: "rgba(255,255,255,0.03)", border: `1px solid ${p.color}25` }}>
                                 <span style={{ fontSize: "13px" }}>{p.icon}</span>
