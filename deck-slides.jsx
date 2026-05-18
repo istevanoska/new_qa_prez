@@ -1227,10 +1227,10 @@ window.Sprint2Slide = () => {
         return () => clearTimeout(t);
     }, []);
 
-    React.useEffect(() => {
-        const t = setInterval(() => goTo((slide + 1) % totalSlides), 5000);
-        return () => clearInterval(t);
-    }, [slide]);
+    // React.useEffect(() => {
+    //     const t = setInterval(() => goTo((slide + 1) % totalSlides), 5000);
+    //     return () => clearInterval(t);
+    // }, [slide]);
 
     const goTo = (n) => {
         if (transitioning) return;
@@ -1610,14 +1610,14 @@ window.Sprint3Slide = () => {
 
     const totalSlides = 3;
 
-    React.useEffect(() => {
-        const t = setInterval(() => {
-            goTo((slide + 1) % totalSlides);
-        }, 6000);
-
-        return () => clearInterval(t);
-
-    }, [slide]);
+    // React.useEffect(() => {
+    //     const t = setInterval(() => {
+    //         goTo((slide + 1) % totalSlides);
+    //     }, 6000);
+    //
+    //     return () => clearInterval(t);
+    //
+    // }, [slide]);
 
     const goTo = (n) => {
 
@@ -1648,6 +1648,24 @@ window.Sprint3Slide = () => {
         }, 220);
 
     };
+    React.useEffect(() => {
+
+        const t = setInterval(() => {
+
+            setModTransitioning(true);
+
+            setTimeout(() => {
+
+                setModIndex(prev => (prev + 1) % 7);
+                setModTransitioning(false);
+
+            }, 220);
+
+        }, 3500);
+
+        return () => clearInterval(t);
+
+    }, []);
 
     /* -------------------------------- CHART SLIDE -------------------------------- */
 
@@ -1655,12 +1673,12 @@ window.Sprint3Slide = () => {
 
         const modules = [
             { label: "Navigation", manual: 35, ai: 120 },
-            { label: "Shopping", manual: 35, ai: 90 },
-            { label: "Search", manual: 30, ai: 225 },
+            { label: "Shopping Cart", manual: 35, ai: 90 },
+            { label: "Search & Filter", manual: 30, ai: 225 },
             { label: "Checkout", manual: 25, ai: 120 },
-            { label: "Errors", manual: 15, ai: 30 },
-            { label: "Product", manual: 95, ai: 55 },
-            { label: "User", manual: 80, ai: 50 },
+            { label: "Error Handling", manual: 15, ai: 30 },
+            { label: "Product Details", manual: 95, ai: 55 },
+            { label: "User Account", manual: 80, ai: 50 },
         ];
 
         const maxVal = 250;
@@ -1672,11 +1690,13 @@ window.Sprint3Slide = () => {
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "10px",
-                    zoom: 1.2,
-                    transform: "translateY(-6px)"
+                    gap: "16px",
+                    zoom: 1.08,
+                    transform: "translateY(-2px)"
                 }}
             >
+
+                {/* TITLE */}
 
                 <p
                     style={{
@@ -1685,99 +1705,240 @@ window.Sprint3Slide = () => {
                         letterSpacing: "0.35em"
                     }}
                 >
-                    TIME PER MODULE
+                    TIME PER MODULE — MANUAL (1 TEST) VS AI-ASSISTED (REST)
                 </p>
 
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "16px",
-                        alignItems: "center"
-                    }}
-                >
-
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#3758a5" }} />
-                        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)" }}>
-                            Manual
-                        </span>
-                    </div>
-
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#61E6D8" }} />
-                        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)" }}>
-                            AI-assisted
-                        </span>
-                    </div>
-
-                </div>
+                {/* CHART CARD */}
 
                 <div
                     style={{
                         flex: 1,
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        borderRadius: "24px",
+                        padding: "20px 24px 18px 24px",
                         display: "flex",
-                        alignItems: "flex-end",
-                        justifyContent: "space-around",
-                        paddingBottom: "20px",
-                        zoom:1.5
+                        flexDirection: "column"
                     }}
                 >
 
-                    {
-                        modules.map((m, i) => (
+                    {/* LEGEND */}
 
+                    <div
+                        style={{
+                            display: "flex",
+                            gap: "18px",
+                            alignItems: "center",
+                            marginBottom: "16px"
+                        }}
+                    >
+
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                             <div
-                                key={i}
                                 style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "center",
-                                    gap: "8px"
+                                    width: "12px",
+                                    height: "12px",
+                                    borderRadius: "3px",
+                                    background: "#3758a5"
+                                }}
+                            />
+
+                            <span
+                                style={{
+                                    fontSize: "12px",
+                                    color: "rgba(255,255,255,0.7)"
                                 }}
                             >
+                            Manual (1 test)
+                        </span>
+
+                        </div>
+
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <div
+                                style={{
+                                    width: "12px",
+                                    height: "12px",
+                                    borderRadius: "3px",
+                                    background: "#61E6D8"
+                                }}
+                            />
+
+                            <span
+                                style={{
+                                    fontSize: "12px",
+                                    color: "rgba(255,255,255,0.7)"
+                                }}
+                            >
+                            AI-assisted (remaining tests)
+                        </span>
+
+                        </div>
+
+                    </div>
+
+                    {/* CHART */}
+
+                    <div
+                        style={{
+                            flex: 1,
+                            display: "flex",
+                            alignItems: "flex-end",
+                            justifyContent: "space-between",
+                            padding: "10px 12px 0 12px",
+                            borderBottom: "1px solid rgba(255,255,255,0.08)",
+                            position: "relative"
+                        }}
+                    >
+
+                        {/* GRID LINES */}
+
+                        {
+                            [50,100,150,200,250].map((n, i) => (
 
                                 <div
+                                    key={i}
+                                    style={{
+                                        position: "absolute",
+                                        left: 0,
+                                        right: 0,
+                                        bottom: `${(n/maxVal)*100}%`,
+                                        borderTop: "1px solid rgba(255,255,255,0.05)"
+                                    }}
+                                />
+
+                            ))
+                        }
+
+                        {
+                            modules.map((m, i) => (
+
+                                <div
+                                    key={i}
                                     style={{
                                         display: "flex",
-                                        alignItems: "flex-end",
-                                        gap: "8px",
-                                        height: "240px"
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                        width: "100%"
                                     }}
                                 >
 
-                                    <div
-                                        style={{
-                                            width: "24px",
-                                            height: `${(m.manual / maxVal) * 220}px`,
-                                            borderRadius: "8px 8px 0 0",
-                                            background: "linear-gradient(to top,#243b77,#3c5ca6)"
-                                        }}
-                                    />
+                                    {/* VALUES */}
 
                                     <div
                                         style={{
-                                            width: "24px",
-                                            height: `${(m.ai / maxVal) * 220}px`,
-                                            borderRadius: "8px 8px 0 0",
-                                            background: "linear-gradient(to top,#2aa696,#61E6D8)"
+                                            display: "flex",
+                                            alignItems: "flex-end",
+                                            gap: "6px",
+                                            height: "290px"
                                         }}
-                                    />
+                                    >
 
-                                </div>
+                                        {/* MANUAL */}
 
-                                <span
-                                    style={{
-                                        fontSize: "10px",
-                                        color: "rgba(255,255,255,0.45)"
-                                    }}
-                                >
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "center",
+                                                justifyContent: "flex-end",
+                                                height: "100%"
+                                            }}
+                                        >
+
+                                        <span
+                                            style={{
+                                                fontSize: "10px",
+                                                color: "#8EA4FF",
+                                                marginBottom: "6px",
+                                                fontWeight: 700
+                                            }}
+                                        >
+                                            {m.manual}m
+                                        </span>
+
+                                            <div
+                                                style={{
+                                                    width: "26px",
+                                                    height: `${(m.manual / maxVal) * 240}px`,
+                                                    borderRadius: "8px 8px 0 0",
+                                                    background: "linear-gradient(to top,#27498d,#3f67bf)"
+                                                }}
+                                            />
+
+                                        </div>
+
+                                        {/* AI */}
+
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "center",
+                                                justifyContent: "flex-end",
+                                                height: "100%"
+                                            }}
+                                        >
+
+                                        <span
+                                            style={{
+                                                fontSize: "10px",
+                                                color: "#61E6D8",
+                                                marginBottom: "6px",
+                                                fontWeight: 700
+                                            }}
+                                        >
+                                            {m.ai}m
+                                        </span>
+
+                                            <div
+                                                style={{
+                                                    width: "26px",
+                                                    height: `${(m.ai / maxVal) * 240}px`,
+                                                    borderRadius: "8px 8px 0 0",
+                                                    background: "linear-gradient(to top,#299a8e,#61E6D8)"
+                                                }}
+                                            />
+
+                                        </div>
+
+                                    </div>
+
+                                    {/* LABEL */}
+
+                                    <span
+                                        style={{
+                                            marginTop: "12px",
+                                            fontSize: "10px",
+                                            color: "rgba(255,255,255,0.52)",
+                                            textAlign: "center",
+                                            maxWidth: "70px",
+                                            lineHeight: "1.3"
+                                        }}
+                                    >
                                     {m.label}
                                 </span>
 
-                            </div>
+                                </div>
 
-                        ))
-                    }
+                            ))
+                        }
+
+                    </div>
+
+                    {/* FOOTNOTE */}
+
+                    <p
+                        style={{
+                            marginTop: "12px",
+                            fontSize: "11px",
+                            color: "rgba(255,255,255,0.4)",
+                            fontStyle: "italic"
+                        }}
+                    >
+                        AI time includes debugging & refinement. Product Details &
+                        User Account became faster per TC after refactor.
+                    </p>
 
                 </div>
 
@@ -1786,7 +1947,6 @@ window.Sprint3Slide = () => {
         );
 
     };
-
     /* -------------------------------- MODULES SLIDE -------------------------------- */
 
     const ModulesSlide = () => {
@@ -3018,16 +3178,17 @@ window.ComparisonSlide = () => (
 
 )
 
+
 window.ConclusionSlide = () => {
 
     const [slide, setSlide] = React.useState(0);
     const [transitioning, setTransitioning] = React.useState(false);
     const totalSlides = 3;
 
-    React.useEffect(() => {
-        const t = setInterval(() => goTo((slide + 1) % totalSlides), 6000);
-        return () => clearInterval(t);
-    }, [slide]);
+    // React.useEffect(() => {
+    //     const t = setInterval(() => goTo((slide + 1) % totalSlides), 6000);
+    //     return () => clearInterval(t);
+    // }, [slide]);
 
     const goTo = (n) => {
         if (transitioning) return;
@@ -3052,7 +3213,8 @@ window.ConclusionSlide = () => {
                         padding: "14px 10px", borderRadius: "14px",
                         background: `${m.color}0A`,
                         border: `1px solid ${m.color}30`,
-                        textAlign: "center"
+                        textAlign: "center",
+                        zoom:1.5
                     }}>
                         <div className="display" style={{ fontSize: "clamp(18px,2vw,28px)", color: m.color, letterSpacing: "-0.02em" }}>{m.val}</div>
                         <div style={{ fontSize: "8px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.38)", marginTop: "4px" }}>{m.label}</div>
@@ -3061,7 +3223,7 @@ window.ConclusionSlide = () => {
             </div>
 
             {/* Manual vs AI wins */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1, zoom: 1.4}}>
                 {[
                     { dot: "#8EA4FF", title: "Where manual is irreplaceable", items: [
                             "Discovering unexpected, unknown bugs",
@@ -3111,7 +3273,7 @@ window.ConclusionSlide = () => {
             <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>AI VS HUMAN — WHO, WHEN & WHY</p>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px" }}>Optimal division of responsibilities and the best AI tool for each task</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", zoom:1.4 }}>
                 {[
                     { dot: "#8EA4FF", title: "Human is required", items: [
                             "Page Object Model architecture",
@@ -3170,7 +3332,7 @@ window.ConclusionSlide = () => {
                 <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>WHICH AI TOOL IS BEST FOR WHAT</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", flex: 1 }}>
                     {tools.map((t, i) => (
-                        <div key={i} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <div key={i} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "8px", zoom:1.3 }}>
                             <span style={{ fontSize: "12px", fontWeight: 700, color: "#fff" }}>{t.name}</span>
                             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px", lineHeight: "1.55", flex: 1, margin: 0 }}>{t.desc}</p>
                             <div style={{
@@ -3183,7 +3345,7 @@ window.ConclusionSlide = () => {
                     ))}
                 </div>
                 {/* Optimal workflow */}
-                <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px" }}>
+                <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px", zoom:1.3 }}>
                     <span style={{ fontSize: "14px", flexShrink: 0 }}>⇄</span>
                     <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
                         <strong style={{ color: "#61E6D8" }}>Optimal workflow:</strong> Explore manually first → AI generates skeleton & test cases → Engineer builds POM architecture → AI fills in edge cases → Human finalizes, stabilizes & verifies. Neither AI nor human alone is enough — <strong style={{ color: "#fff" }}>the win is in the synergy.</strong>
@@ -3206,7 +3368,7 @@ window.ConclusionSlide = () => {
                 <div style={{ position: "absolute", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(142,164,255,0.09), transparent 70%)", left: "0", bottom: "-80px", filter: "blur(60px)", pointerEvents: "none", zIndex: 0 }} />
 
                 {/* ── LEFT ── */}
-                <div style={{ padding: "52px 36px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2 }}>
+                <div style={{ padding: "52px 36px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2, zoom:1.1 }}>
 
                     <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
@@ -3246,7 +3408,7 @@ window.ConclusionSlide = () => {
                     </div>
 
                     {/* Final verdict */}
-                    <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)" }}>
+                    <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", marginTop: "10px" }}>
                         <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "8px", letterSpacing: "0.3em", marginBottom: "8px" }}>FINAL VERDICT</p>
                         <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "12px", lineHeight: "1.65", margin: 0 }}>
                             AI + Human together outperform either approach alone — every time.
