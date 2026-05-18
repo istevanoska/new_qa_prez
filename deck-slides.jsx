@@ -1069,17 +1069,17 @@ window.Sprint1Slide = () => {
         {
             icon: "◎",
             label: "STEP 01",
-            text: "Explored 8+ components of the PrestaShop demo — navigation, filters, cart, authentication and more."
+            text: "Explored 9+ components of the PrestaShop demo - navigation, filters, cart, authentication and more."
         },
         {
             icon: "⬡",
             label: "STEP 02",
-            text: "Applied 6 testing techniques: exploratory, error guessing, boundary value analysis and more."
+            text: "Applied 7 testing techniques: exploratory, error guessing, boundary value analysis and more."
         },
         {
             icon: "⊡",
             label: "STEP 03",
-            text: "Discovered 14+ defects and wrote 25+ formal test cases — baseline for AI comparison."
+            text: "Discovered 32+ defects and wrote 50+ different formal test cases - baseline for AI comparison."
         },
     ];
 
@@ -1135,10 +1135,15 @@ window.Sprint1Slide = () => {
                             </span>
                         </h1>
 
-                        <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "14px", lineHeight: "1.7", maxWidth: "480px" }}>
-                            The tester navigates the PrestaShop app like a real user —
+                        <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "14px", lineHeight: "1.7", maxWidth: "500px" }}>
+                            The tester navigates the PrestaShop app like a real user -
                             no scripts, just instinct and technique.
                             Every defect is logged, classified, and tracked.
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            Testing performed on: Laptop &middot; Tablet &middot; Mobile devices.
+                            From a real user perspective to defect documentation.
                         </p>
                     </div>
 
@@ -1161,7 +1166,7 @@ window.Sprint1Slide = () => {
                                     <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.15em" }}>DEFECT REPORT</div>
                                 </div>
                             </div>
-                            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>16 reports</div>
+                            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>32 reports</div>
                         </div>
 
                         {/* defect line */}
@@ -1196,7 +1201,7 @@ window.Sprint1Slide = () => {
                     {/* VERIFIED LABEL */}
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "32px" }}>
                         <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#61E6D8", boxShadow: "0 0 10px #61E6D8" }} />
-                        <p style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.4em", fontSize: "10px" }}>14+ DEFECTS · 25+ TEST CASES</p>
+                        <p style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.4em", fontSize: "10px" }}>32+ DEFECTS · 50+ TEST CASES</p>
                     </div>
 
                     {/* STEPS */}
@@ -1237,8 +1242,8 @@ window.Sprint1Slide = () => {
                         gap: "12px"
                     }}>
                         {[
-                            { val: "14+",    label: "Defects" },
-                            { val: "25+",    label: "Test Cases" },
+                            { val: "32+",    label: "Defects" },
+                            { val: "50+",    label: "Test Cases" },
                             { val: "~90min", label: "Avg. Session" },
                         ].map((m, i) => (
                             <div key={i} style={{
@@ -1256,7 +1261,7 @@ window.Sprint1Slide = () => {
 
                     {/* TECHNIQUES PILLS */}
                     <div style={{ marginTop: "16px", display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                        {["Exploratory","Error Guessing","Happy Path","Negative","BVA","EP"].map((t, i) => (
+                        {["Exploratory","Error Guessing","Happy Path","Negative","Boundary Value Analysis","Equivalence Partitioning","State Transition"].map((t, i) => (
                             <div key={i} style={{
                                 padding: "6px 13px", borderRadius: "999px",
                                 background: "rgba(97,230,216,0.07)",
@@ -3453,7 +3458,7 @@ window.ConclusionSlide = () => {
                     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                         <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "4px" }}>SPRINT JOURNEY</p>
                         {[
-                            { label: "Sprint 1", desc: "Exploratory testing · 14+ bugs · 25+ TCs",  color: "#61E6D8" },
+                            { label: "Sprint 1", desc: "Exploratory testing · 32+ bugs · 25+ TCs",  color: "#61E6D8" },
                             { label: "Sprint 2", desc: "Manual vs AI · 3 testers · 3 platforms",     color: "#8EA4FF" },
                             { label: "Sprint 3", desc: "Selenium automation · 7 modules · ~37% AI+", color: "#FFB86B" },
                         ].map((s, i) => (
