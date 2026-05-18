@@ -1385,10 +1385,8 @@ window.Sprint1Slide = () => {
                             Every defect is logged, classified, and tracked.
                             <br></br>
                             <br></br>
-                            <br></br>
                             Testing performed on:
                             <br></br> <p style={{fontWeight: 'bold'}}>Laptop &middot; Tablet &middot; Mobile devices</p>
-                            <br></br>
                             From a real user perspective to defect documentation.
                         </p>
                     </div>
@@ -1441,7 +1439,7 @@ window.Sprint1Slide = () => {
                     gap: "0",
                     position: "relative",
                     zIndex: 2,
-                    zoom: -1.2
+                    zoom: 1.1
                 }}>
 
                     {/* VERIFIED LABEL */}
@@ -1560,7 +1558,7 @@ window.Sprint2Slide = () => {
             { label: "Traceability",        val: "manual",       hl: false },
         ];
         const aiRows = [
-            { label: "Time to create TCs", val: "~25 min – 8 hrs",   hl: false },
+            { label: "Time to create TCs", val: "5–8 hrs",   hl: false },
             { label: "Test cases",          val: "~21–36",            hl: false },
             { label: "Coverage type",       val: "broad, structured", hl: true, hlColor: "#61E6D8" },
             { label: "Edge cases",          val: "high",              hl: true, hlColor: "#61E6D8" },
@@ -1627,14 +1625,14 @@ window.Sprint2Slide = () => {
     const BugsSlide = () => {
 
         const barData = [
-            { label: "Leonida · tablet", manual: 16, ai: 11 },
-            { label: "Tamara · laptop",  manual: 9,  ai: 11 },
-            { label: "Ilina · mobile",  manual: 14, ai: 14 },
+            { label: "tablet", manual: 16, ai: 11 },
+            { label: "laptop",  manual: 9,  ai: 11 },
+            { label: "mobile",  manual: 14, ai: 14 },
         ];
 
         const donutData = [
             {
-                title: "Leonida · tablet · 16 bugs",
+                title: "tablet · 16 bugs",
                 segments: [
                     { pct: 12.5, color: "#d9534f", label: "Critical 12.5%" },
                     { pct: 31.3, color: "#e0a03b", label: "High 31.3%" },
@@ -1643,7 +1641,7 @@ window.Sprint2Slide = () => {
                 ],
             },
             {
-                title: "Tamara · laptop · 11 bugs",
+                title: "laptop · 11 bugs",
                 segments: [
                     { pct: 18, color: "#d9534f", label: "Critical 18%" },
                     { pct: 45, color: "#e0a03b", label: "High 45%" },
@@ -1652,7 +1650,7 @@ window.Sprint2Slide = () => {
                 ],
             },
             {
-                title: "Ilina · mobile · 14 bugs",
+                title: "mobile · 14 bugs",
                 segments: [
                     { pct: 0,    color: "#d9534f", label: "Critical 0%" },
                     { pct: 35.7, color: "#e0a03b", label: "High 35.7%" },
