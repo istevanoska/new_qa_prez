@@ -67,30 +67,40 @@ window.TitleSlide = () => (
                     style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: "12px",
+                        gap: "16px",
                         marginBottom: "32px"
                     }}
                 >
 
-                    <div
+                    <img
+                        src="screenshots/finki_logo_white.png"
+                        alt="FINKI"
                         style={{
-                            width: "10px",
-                            height: "10px",
-                            borderRadius: "50%",
-                            background: "#61E6D8",
-                            boxShadow: "0 0 20px #61E6D8"
+                            height: "38px",
+                            objectFit: "contain",
+                            background: "transparent"
                         }}
                     />
 
-                    <p
+                    <span
                         style={{
-                            color: "#8EA4FF",
-                            letterSpacing: "0.45em",
-                            fontSize: "12px"
+                            color: "rgba(255,255,255,0.28)",
+                            fontSize: "22px",
+                            fontWeight: "300",
+                            lineHeight: 1
                         }}
                     >
-                        FINKI x NETCETERA
-                    </p>
+                </span>
+
+                    <img
+                        src="screenshots/netcetera_logo_white.png"
+                        alt="Netcetera"
+                        style={{
+                            height: "34px",
+                            objectFit: "contain",
+                            background: "transparent"
+                        }}
+                    />
 
                 </div>
 
