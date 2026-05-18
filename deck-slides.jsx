@@ -439,7 +439,7 @@ window.OverviewSlide = () => {
                                 color:"transparent"
                             }}
                         >
-                            exploring real-world QA workflows.
+                            through SCRUM on PrestaShop.
                         </span>
 
                     </h1>
@@ -451,12 +451,11 @@ window.OverviewSlide = () => {
                             color:"rgba(255,255,255,0.42)",
                             fontSize:"12px",
                             lineHeight:"1.65",
-                            maxWidth:"390px",
+                            maxWidth:"460px",
                             marginBottom:"22px"
                         }}
                     >
-                        Session-based exploratory testing on PrestaShop —
-                        focused on usability, user behaviour and edge cases.
+                        Focused on user behavior, uncover usability issues, and validate edge cases.
                     </p>
 
                     {/* SCREENSHOT */}
@@ -464,7 +463,7 @@ window.OverviewSlide = () => {
                     <div
                         style={{
                             position:"relative",
-                            height:"300px",
+                            height:"370px",
                             overflow:"hidden",
                             background:"#09111f",
                             borderRadius:"18px",
@@ -891,84 +890,145 @@ window.OverviewSlide = () => {
 
                         <div
                             style={{
-                                display:"flex",
-                                flexWrap:"wrap",
-                                gap:"14px",
-                                alignItems:"flex-start"
+                                display: "flex",
+                                flexWrap: "wrap",
+                                gap: "14px",
+                                alignItems: "flex-start"
                             }}
                         >
                             {
                                 [
                                     {
-                                        category:"Test Management & Documentation",
-                                        color:"#61E6D8",
-                                        tools:["Qase", "Taiga", "Excel", "Dillinger"]
+                                        category: "Test Management & Documentation",
+                                        color: "#61E6D8",
+                                        tools: ["Qase", "Taiga", "Excel", "Dillinger"]
                                     },
                                     {
-                                        category:"Development & Automation",
-                                        color:"#8EA4FF",
-                                        tools:["IntelliJ", "Selenium", "JUnit"]
+                                        category: "Development & Automation",
+                                        color: "#8EA4FF",
+                                        tools: ["IntelliJ", "Selenium", "JUnit"]
                                     },
                                     {
-                                        category:"Presentation",
-                                        color:"#FFB86B",
-                                        tools:["React","JavaScript","WebStorm", "Canva"]
+                                        category: "Presentation",
+                                        color: "#FFB86B",
+                                        tools: ["Canva", "React", "WebStorm", "Tailwind CSS", "Babel"],
+                                        subcategories: [
+                                            {
+                                                category: "Deployment",
+                                                color: "#FF8DA1",
+                                                tools: ["Vercel"]
+                                            }
+                                        ]
                                     },
-                                    {
-                                        category:"Deployment",
-                                        color:"#FF8DA1",
-                                        tools:["Vercel"]
-                                    }
-                                ].map((group, index)=>(
+                                ].map((group, index) => (
 
                                     <div
                                         key={index}
                                         style={{
-                                            border:`1px solid ${group.color}45`,
-                                            background:`${group.color}10`,
-                                            borderRadius:"18px",
-                                            padding:"12px 14px",
-                                            boxShadow:`0 0 18px ${group.color}12`
+                                            border: `1px solid ${group.color}45`,
+                                            background: `${group.color}10`,
+                                            borderRadius: "18px",
+                                            padding: "12px 14px",
+                                            boxShadow: `0 0 18px ${group.color}12`
                                         }}
                                     >
 
                                         <p
                                             style={{
-                                                color:group.color,
-                                                fontSize:"9px",
-                                                letterSpacing:"0.18em",
-                                                marginBottom:"10px",
-                                                fontWeight:"700",
-                                                textTransform:"uppercase"
+                                                color: group.color,
+                                                fontSize: "9px",
+                                                letterSpacing: "0.18em",
+                                                marginBottom: "10px",
+                                                fontWeight: "700",
+                                                textTransform: "uppercase"
                                             }}
                                         >
                                             {group.category}
                                         </p>
 
+                                        {/* Main tools wrapper now houses both tools and subcategories */}
                                         <div
                                             style={{
-                                                display:"flex",
-                                                gap:"8px",
-                                                flexWrap:"wrap"
+                                                display: "flex",
+                                                gap: "8px",
+                                                flexWrap: "wrap",
+                                                alignItems: "center"
                                             }}
                                         >
                                             {
-                                                group.tools.map((tool, i)=>(
+                                                group.tools.map((tool, i) => (
 
                                                     <div
                                                         key={i}
                                                         style={{
-                                                            padding:"8px 12px",
-                                                            borderRadius:"12px",
-                                                            background:"rgba(255,255,255,0.06)",
-                                                            border:"1px solid rgba(255,255,255,0.08)",
-                                                            color:"rgba(255,255,255,0.82)",
-                                                            fontSize:"11px",
-                                                            fontWeight:600,
-                                                            whiteSpace:"nowrap"
+                                                            padding: "8px 12px",
+                                                            borderRadius: "12px",
+                                                            background: "rgba(255,255,255,0.06)",
+                                                            border: "1px solid rgba(255,255,255,0.08)",
+                                                            color: "rgba(255,255,255,0.82)",
+                                                            fontSize: "11px",
+                                                            fontWeight: 600,
+                                                            whiteSpace: "nowrap"
                                                         }}
                                                     >
                                                         {tool}
+                                                    </div>
+
+                                                ))
+                                            }
+
+                                            {/* Subcategories render inside the flex row, directly after the tools list */}
+                                            {
+                                                group.subcategories?.map((sub, subIndex) => (
+
+                                                    <div
+                                                        key={subIndex}
+                                                        style={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                            gap: "10px",
+                                                            padding: "4px 10px",
+                                                            borderRadius: "12px",
+                                                            background: "rgba(255,255,255,0.04)",
+                                                            border: `1px solid ${sub.color}35`,
+                                                            marginLeft: "4px"
+                                                        }}
+                                                    >
+                                                        <p
+                                                            style={{
+                                                                color: sub.color,
+                                                                fontSize: "8px",
+                                                                letterSpacing: "0.18em",
+                                                                fontWeight: "700",
+                                                                textTransform: "uppercase",
+                                                                margin: 0
+                                                            }}
+                                                        >
+                                                            {sub.category}
+                                                        </p>
+
+                                                        <div style={{ display: "flex", gap: "8px" }}>
+                                                            {
+                                                                sub.tools.map((tool, i) => (
+
+                                                                    <div
+                                                                        key={i}
+                                                                        style={{
+                                                                            padding: "8px 12px",
+                                                                            borderRadius: "12px",
+                                                                            background: "rgba(255,255,255,0.06)",
+                                                                            border: "1px solid rgba(255,255,255,0.08)",
+                                                                            color: "rgba(255,255,255,0.82)",
+                                                                            fontSize: "11px",
+                                                                            fontWeight: 600
+                                                                        }}
+                                                                    >
+                                                                        {tool}
+                                                                    </div>
+
+                                                                ))
+                                                            }
+                                                        </div>
                                                     </div>
 
                                                 ))
