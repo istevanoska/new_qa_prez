@@ -1130,7 +1130,7 @@ window.Sprint1Slide = () => {
                     gap: "0",
                     position: "relative",
                     zIndex: 2,
-                    zoom:1.3
+                    zoom:1.2
                 }}>
 
                     {/* VERIFIED LABEL */}
@@ -1241,62 +1241,69 @@ window.Sprint2Slide = () => {
     // ── SLIDE 0: Head-to-Head Comparison ──
     const ComparisonSlide = () => {
         const manualRows = [
-            { label: "Time to create TCs", val: "12–15 hrs",       hl: false },
-            { label: "Test cases",          val: "~20–34",          hl: false },
-            { label: "Coverage type",       val: "deep, narrow",    hl: true,  hlColor: "#8EA4FF" },
-            { label: "Edge cases",          val: "limited",         hl: false },
-            { label: "Bug depth",           val: "high",            hl: true,  hlColor: "#61E6D8" },
-            { label: "Traceability",        val: "manual",          hl: false },
+            { label: "Time to create TCs", val: "12–15 hrs",    hl: false },
+            { label: "Test cases",          val: "~20–34",       hl: false },
+            { label: "Coverage type",       val: "deep, narrow", hl: true, hlColor: "#8EA4FF" },
+            { label: "Edge cases",          val: "limited",      hl: false },
+            { label: "Bug depth",           val: "high",         hl: true, hlColor: "#61E6D8" },
+            { label: "Traceability",        val: "manual",       hl: false },
         ];
         const aiRows = [
             { label: "Time to create TCs", val: "~25 min – 8 hrs",   hl: false },
             { label: "Test cases",          val: "~21–36",            hl: false },
-            { label: "Coverage type",       val: "broad, structured", hl: true,  hlColor: "#61E6D8" },
-            { label: "Edge cases",          val: "high",              hl: true,  hlColor: "#61E6D8" },
+            { label: "Coverage type",       val: "broad, structured", hl: true, hlColor: "#61E6D8" },
+            { label: "Edge cases",          val: "high",              hl: true, hlColor: "#61E6D8" },
             { label: "Bug depth",           val: "medium",            hl: false },
-            { label: "Traceability",        val: "100% to bug IDs",   hl: true,  hlColor: "#61E6D8" },
+            { label: "Traceability",        val: "100% to bug IDs",   hl: true, hlColor: "#61E6D8" },
         ];
+
+        const rowStyle = (row, last) => ({
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "5px 0",
+            borderBottom: !last ? "1px solid rgba(255,255,255,0.05)" : "none",
+        });
+
+        const valStyle = (row) => ({
+            fontSize: "11px",
+            fontWeight: row.hl ? 600 : 400,
+            color: row.hl ? row.hlColor : "rgba(255,255,255,0.85)",
+            background: row.hl ? `${row.hlColor}18` : "transparent",
+            border: row.hl ? `1px solid ${row.hlColor}35` : "1px solid transparent",
+            padding: row.hl ? "2px 7px" : "2px 0",
+            borderRadius: "6px",
+        });
+
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8 }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>HEAD-TO-HEAD COMPARISON</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "8px", zoom:1.5 }}>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", flexShrink: 0 }}>
+                    HEAD-TO-HEAD COMPARISON
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1, minHeight: 0 }}>
                     {/* Manual */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#8EA4FF" }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>Manual testing</span>
+                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", flexShrink: 0 }}>
+                            <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#8EA4FF" }} />
+                            <span style={{ fontSize: "12px", fontWeight: 700 }}>Manual testing</span>
                         </div>
                         {manualRows.map((row, i) => (
-                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: i < manualRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                            <div key={i} style={rowStyle(row, i === manualRows.length - 1)}>
                                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px" }}>{row.label}</span>
-                                <span style={{
-                                    fontSize: "11px", fontWeight: row.hl ? 600 : 400,
-                                    color: row.hl ? row.hlColor : "rgba(255,255,255,0.85)",
-                                    background: row.hl ? `${row.hlColor}18` : "transparent",
-                                    border: row.hl ? `1px solid ${row.hlColor}35` : "1px solid transparent",
-                                    padding: row.hl ? "2px 7px" : "2px 0",
-                                    borderRadius: "6px"
-                                }}>{row.val}</span>
+                                <span style={valStyle(row)}>{row.val}</span>
                             </div>
                         ))}
                     </div>
                     {/* AI */}
-                    <div style={{ background: "rgba(97,230,216,0.04)", border: "1px solid rgba(97,230,216,0.15)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#61E6D8" }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>AI-assisted testing</span>
+                    <div style={{ background: "rgba(97,230,216,0.04)", border: "1px solid rgba(97,230,216,0.15)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", flexShrink: 0 }}>
+                            <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#61E6D8" }} />
+                            <span style={{ fontSize: "12px", fontWeight: 700 }}>AI-assisted testing</span>
                         </div>
                         {aiRows.map((row, i) => (
-                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: i < aiRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                            <div key={i} style={rowStyle(row, i === aiRows.length - 1)}>
                                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px" }}>{row.label}</span>
-                                <span style={{
-                                    fontSize: "11px", fontWeight: row.hl ? 600 : 400,
-                                    color: row.hl ? row.hlColor : "rgba(255,255,255,0.85)",
-                                    background: row.hl ? `${row.hlColor}18` : "transparent",
-                                    border: row.hl ? `1px solid ${row.hlColor}35` : "1px solid transparent",
-                                    padding: row.hl ? "2px 7px" : "2px 0",
-                                    borderRadius: "6px"
-                                }}>{row.val}</span>
+                                <span style={valStyle(row)}>{row.val}</span>
                             </div>
                         ))}
                     </div>
@@ -1305,84 +1312,141 @@ window.Sprint2Slide = () => {
         );
     };
 
-    // ── SLIDE 1: Bugs by approach + Severity donut ──
+    // ── SLIDE 1: Bugs by approach + Severity donuts ──
     const BugsSlide = () => {
-        const bugData = [
-            { label: "",       manual: 16, ai: 11 },
-            { label: "Mobile report", manual: 14, ai: 12 },
+
+        const barData = [
+            { label: "Leonida · tablet", manual: 16, ai: 11 },
+            { label: "Tamara · desktop",  manual: 9,  ai: 11 },
+            { label: "Ilina · mobile",  manual: 14, ai: 14 },
         ];
-        const segs = [
-            { pct: 18, color: "#FF6B7A", label: "Critical 18%" },
-            { pct: 45, color: "#FFB86B", label: "High 45%" },
-            { pct: 27, color: "#8EA4FF", label: "Medium 27%" },
-            { pct: 9,  color: "#888",    label: "Low 9%" },
+
+        const donutData = [
+            {
+                title: "Leonida · tablet · 16 bugs",
+                segments: [
+                    { pct: 12.5, color: "#d9534f", label: "Critical 12.5%" },
+                    { pct: 31.3, color: "#e0a03b", label: "High 31.3%" },
+                    { pct: 37.5, color: "#4d83d8", label: "Medium 37.5%" },
+                    { pct: 18.8, color: "#8c8c86", label: "Low 18.8%" },
+                ],
+            },
+            {
+                title: "Tamara · desktop · 11 bugs",
+                segments: [
+                    { pct: 18, color: "#d9534f", label: "Critical 18%" },
+                    { pct: 45, color: "#e0a03b", label: "High 45%" },
+                    { pct: 27, color: "#4d83d8", label: "Medium 27%" },
+                    { pct: 9,  color: "#8c8c86", label: "Low 9%" },
+                ],
+            },
+            {
+                title: "Ilina · mobile · 14 bugs",
+                segments: [
+                    { pct: 0,    color: "#d9534f", label: "Critical 0%" },
+                    { pct: 35.7, color: "#e0a03b", label: "High 35.7%" },
+                    { pct: 42.9, color: "#4d83d8", label: "Medium 42.9%" },
+                    { pct: 21.4, color: "#8c8c86", label: "Low 21.4%" },
+                ],
+            },
         ];
-        const r = 52, cx = 70, cy = 70, thick = 22;
-        const circ = 2 * Math.PI * r;
-        let off = 0;
+
+        const radius = 44;
+        const circumference = 2 * Math.PI * radius;
+        const maxBug = 16;
+
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8}}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>DEFECTS FOUND & SEVERITY</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
-                    {/* BAR CHART */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.25em", marginBottom: "12px" }}>BUGS BY APPROACH</p>
-                        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "14px" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual</span></div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#61E6D8", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>AI-assisted</span></div>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "8px", zoom:1.5 }}>
+
+                {/* BAR CHART */}
+                <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "12px 14px", flexShrink: 0 }}>
+                    <p style={{ fontSize: "12px", fontWeight: 700, marginBottom: "8px" }}>Bugs by approach</p>
+
+                    {/* Legend */}
+                    <div style={{ display: "flex", gap: "16px", marginBottom: "10px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#243d78" }} />
+                            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)" }}>Manual</span>
                         </div>
-                        {bugData.map((d, di) => (
-                            <div key={di} style={{ marginBottom: "18px" }}>
-                                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px", marginBottom: "7px" }}>{d.label}</p>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-                                    {[{ val: d.manual, color: "#3b5ea6" }, { val: d.ai, color: "#61E6D8" }].map((b, bi) => (
-                                        <div key={bi} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                            <div style={{ flex: 1, height: "14px", background: "rgba(255,255,255,0.06)", borderRadius: "4px", overflow: "hidden" }}>
-                                                <div style={{ height: "100%", width: animated ? `${(b.val / 20) * 100}%` : "0%", background: b.color, borderRadius: "4px", transition: `width 0.9s ease ${di * 0.15 + bi * 0.1}s` }} />
-                                            </div>
-                                            <span style={{ color: "#fff", fontSize: "12px", fontWeight: 600, width: "18px" }}>{b.val}</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#4ca078" }} />
+                            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)" }}>AI-assisted</span>
+                        </div>
+                    </div>
+
+                    {/* Bars */}
+                    <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", height: "100px" }}>
+                        {barData.map((item, i) => (
+                            <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+                                <div style={{ display: "flex", alignItems: "flex-end", gap: "6px", height: "72px" }}>
+                                    {/* Manual bar */}
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", height: "72px", gap: "2px" }}>
+                                        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.75)", fontWeight: 600 }}>{item.manual}</span>
+                                        <div style={{ width: "28px", height: `${(item.manual / maxBug) * 52}px`, background: "#243d78", borderRadius: "4px 4px 0 0" }} />
+                                    </div>
+                                    {/* AI bar */}
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", height: "72px", gap: "2px" }}>
+                                        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.75)", fontWeight: 600 }}>{item.ai}</span>
+                                        <div style={{ width: "28px", height: `${(item.ai / maxBug) * 52}px`, background: "#4ca078", borderRadius: "4px 4px 0 0" }} />
+                                    </div>
+                                </div>
+                                <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.45)", textAlign: "center", maxWidth: "80px" }}>{item.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* DONUTS */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", flex: 1, minHeight: 0 }}>
+                    {donutData.map((d, index) => {
+                        let offset = 0;
+                        return (
+                            <div key={index} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "10px 12px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <p style={{ textAlign: "center", fontSize: "9px", marginBottom: "6px", color: "rgba(255,255,255,0.75)", lineHeight: 1.3 }}>{d.title}</p>
+                                <svg width="100" height="100" style={{ transform: "rotate(-90deg)", flexShrink: 0 }}>
+                                    <circle cx="50" cy="50" r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="14" />
+                                    {d.segments.map((seg, i) => {
+                                        const dash = (seg.pct / 100) * circumference;
+                                        const el = (
+                                            <circle
+                                                key={i}
+                                                cx="50" cy="50" r={radius}
+                                                fill="none"
+                                                stroke={seg.color}
+                                                strokeWidth="14"
+                                                strokeDasharray={`${dash} ${circumference}`}
+                                                strokeDashoffset={-offset}
+                                                strokeLinecap="butt"
+                                            />
+                                        );
+                                        offset += dash;
+                                        return el;
+                                    })}
+                                </svg>
+                                <div style={{ marginTop: "6px", display: "flex", flexDirection: "column", gap: "3px", width: "100%" }}>
+                                    {d.segments.map((seg, i) => (
+                                        <div key={i} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                                            <div style={{ width: "7px", height: "7px", borderRadius: "2px", background: seg.color, flexShrink: 0 }} />
+                                            <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.62)" }}>{seg.label}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                    {/* DONUT */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.2em", marginBottom: "12px", alignSelf: "flex-start" }}>SEVERITY SPLIT (TAMARA · 11 BUGS)</p>
-                        <svg width="140" height="140" style={{ transform: "rotate(-90deg)", flexShrink: 0 }}>
-                            <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={thick} />
-                            {segs.map((s, i) => {
-                                const dash = (s.pct / 100) * circ;
-                                const el = (
-                                    <circle key={i} cx={cx} cy={cy} r={r} fill="none" stroke={s.color} strokeWidth={thick}
-                                            strokeDasharray={`${animated ? dash : 0} ${circ}`}
-                                            strokeDashoffset={-off * circ / 100}
-                                            style={{ transition: `stroke-dasharray 0.9s ease ${i * 0.12}s` }} />
-                                );
-                                off += s.pct;
-                                return el;
-                            })}
-                        </svg>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 12px", marginTop: "14px", width: "100%" }}>
-                            {segs.map((s, i) => (
-                                <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: s.color, flexShrink: 0 }} />
-                                    <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "11px" }}>{s.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                        );
+                    })}
                 </div>
+
             </div>
         );
     };
 
     // ── SLIDE 2: What each approach does better ──
     const WinsSlide = () => (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8 }}>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>WHAT EACH APPROACH DOES BETTER</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "8px", zoom:1.5 }}>
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", flexShrink: 0 }}>
+                WHAT EACH APPROACH DOES BETTER
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1, minHeight: 0 }}>
                 {[
                     { dot: "#8EA4FF", title: "Manual wins at", items: [
                             "Real user behaviour discovery",
@@ -1397,32 +1461,23 @@ window.Sprint2Slide = () => {
                             "Regression-ready documentation",
                         ]},
                 ].map((col, ci) => (
-                    <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: col.dot }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>{col.title}</span>
+                    <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", flexShrink: 0 }}>
+                            <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: col.dot }} />
+                            <span style={{ fontSize: "12px", fontWeight: 700 }}>{col.title}</span>
                         </div>
                         {col.items.map((item, ii) => (
-                            <div key={ii} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "6px 0", borderBottom: ii < col.items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                            <div key={ii} style={{ display: "flex", alignItems: "center", gap: "7px", padding: "6px 0", borderBottom: ii < col.items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                                 <span style={{ color: col.dot, fontSize: "12px" }}>✓</span>
-                                <span style={{ color: "rgba(255,255,255,0.68)", fontSize: "12px" }}>{item}</span>
+                                <span style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px" }}>{item}</span>
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
-            {/* Best strategy note */}
-            <div style={{
-                background: "rgba(97,230,216,0.06)",
-                border: "1px solid rgba(97,230,216,0.2)",
-                borderRadius: "12px",
-                padding: "14px 18px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "10px"
-            }}>
-                <span style={{ fontSize: "15px", flexShrink: 0 }}>💡</span>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "12px", lineHeight: "1.6", margin: 0 }}>
+            <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.2)", borderRadius: "12px", padding: "12px 16px", display: "flex", alignItems: "flex-start", gap: "10px", flexShrink: 0 }}>
+                <span style={{ fontSize: "14px", flexShrink: 0 }}>💡</span>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
                     <strong style={{ color: "#61E6D8" }}>Best strategy:</strong> explore manually first to discover unknown bugs, then use AI to formalise findings into structured, traceable, regression-ready test cases.
                 </p>
             </div>
@@ -1434,24 +1489,29 @@ window.Sprint2Slide = () => {
     const ActiveSlide = slides[slide];
 
     return (
-        <SlideRoot style={{
-            zoom: 1.8
-        }}>
-            <div style={{ height: "100%", display: "grid", gridTemplateColumns: "0.85fr 1.15fr", position: "relative", overflow: "hidden" }}>
+        <SlideRoot>
+            <div style={{
+                height: "100%",
+                display: "grid",
+                gridTemplateColumns: "0.85fr 1.15fr",
+                position: "relative",
+                overflow: "hidden",
+            }}>
 
                 {/* BG GLOWS */}
                 <div style={{ position: "absolute", width: "600px", height: "600px", borderRadius: "50%", background: "radial-gradient(circle, rgba(97,230,216,0.09), transparent 70%)", right: "-100px", bottom: "-100px", filter: "blur(60px)", pointerEvents: "none", zIndex: 0 }} />
                 <div style={{ position: "absolute", width: "400px", height: "400px", borderRadius: "50%", background: "radial-gradient(circle, rgba(142,164,255,0.10), transparent 70%)", left: "5%", top: "-60px", filter: "blur(50px)", pointerEvents: "none", zIndex: 0 }} />
 
                 {/* ── LEFT ── */}
-                <div style={{ padding: "52px 40px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2 }}>
+                <div style={{ padding: "42px 32px 42px 48px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2 }}>
+
                     <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
                             <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#61E6D8", boxShadow: "0 0 10px #61E6D8", flexShrink: 0 }} />
                             <p style={{ color: "#61E6D8", letterSpacing: "0.45em", fontSize: "11px", fontWeight: 600 }}>SPRINT 02</p>
                         </div>
 
-                        <h1 className="display" style={{ fontSize: "clamp(40px,4.8vw,74px)", lineHeight: "0.93", letterSpacing: "-0.04em", marginBottom: "22px" }}>
+                        <h1 className="display" style={{ fontSize: "clamp(32px,3.8vw,58px)", lineHeight: "0.93", letterSpacing: "-0.04em", marginBottom: "16px" }}>
                             Manual vs<br/>
                             AI-assisted<br/>
                             <span style={{ background: "linear-gradient(90deg,#fff,#61E6D8)", WebkitBackgroundClip: "text", color: "transparent" }}>
@@ -1459,62 +1519,63 @@ window.Sprint2Slide = () => {
                             </span>
                         </h1>
 
-                        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "13px", lineHeight: "1.7", maxWidth: "380px" }}>
+                        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "12px", lineHeight: "1.65", maxWidth: "340px" }}>
                             Exploratory · charter-based · AI-generated test cases · 3 testers combined across Desktop, Tablet and Mobile.
                         </p>
                     </div>
 
                     {/* METRICS */}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", zoom: 1.2}}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
                         {[
                             { val: "~40%",  label: "EFFORT SAVED" },
                             { val: "10×",   label: "FASTER TC CREATION" },
                             { val: "+22%",  label: "DEFECT COVERAGE" },
                             { val: "100%",  label: "TRACEABILITY (AI)" },
                         ].map((m, i) => (
-                            <div key={i} style={{ padding: "14px 16px", borderRadius: "14px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", textAlign: "center" }}>
-                                <div className="display" style={{ fontSize: "clamp(20px,2.2vw,30px)", color: "#fff", letterSpacing: "-0.02em" }}>{m.val}</div>
-                                <div style={{ fontSize: "9px", letterSpacing: "0.18em", color: "rgba(255,255,255,0.4)", marginTop: "4px" }}>{m.label}</div>
+                            <div key={i} style={{ padding: "12px 10px", borderRadius: "12px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", textAlign: "center" }}>
+                                <div className="display" style={{ fontSize: "clamp(18px,2vw,28px)", color: "#fff", letterSpacing: "-0.02em" }}>{m.val}</div>
+                                <div style={{ fontSize: "8px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.4)", marginTop: "3px" }}>{m.label}</div>
                             </div>
                         ))}
                     </div>
 
                     {/* PLATFORM PILLS */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                        <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "4px" }}>PLATFORMS TESTED</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+                        <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "3px" }}>PLATFORMS TESTED</p>
                         {[
-                            { icon: "🖥", label: "Desktop — Tamara",    color: "#8EA4FF" },
-                            { icon: "📱", label: "Tablet — Leonida",     color: "#61E6D8" },
-                            { icon: "📱", label: "Mobile — Ilina", color: "#FFB86B" },
+                            { icon: "🖥", label: "Desktop — Tamara",   color: "#8EA4FF" },
+                            { icon: "📱", label: "Tablet — Leonida",   color: "#61E6D8" },
+                            { icon: "📱", label: "Mobile — Ilina",     color: "#FFB86B" },
                         ].map((p, i) => (
-                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "7px 12px", borderRadius: "10px", background: "rgba(255,255,255,0.03)", border: `1px solid ${p.color}25` }}>
-                                <span style={{ fontSize: "13px" }}>{p.icon}</span>
-                                <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "12px" }}>{p.label}</span>
+                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "6px 10px", borderRadius: "10px", background: "rgba(255,255,255,0.03)", border: `1px solid ${p.color}25`, zoom:1.2 }}>
+                                <span style={{ fontSize: "12px" }}>{p.icon}</span>
+                                <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "11px" }}>{p.label}</span>
                             </div>
                         ))}
                     </div>
+
                 </div>
 
                 {/* ── RIGHT: SLIDESHOW ── */}
-                <div style={{ padding: "36px 48px 36px 20px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
+                <div style={{ padding: "28px 40px 28px 16px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
 
                     {/* TABS */}
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0, zoom:1.3}}>
+                    <div style={{ display: "flex", gap: "6px", marginBottom: "12px", flexShrink: 0, zoom:1.3 }}>
                         {labels.map((lbl, i) => (
                             <button key={i} onClick={() => goTo(i)} style={{
-                                padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
+                                padding: "5px 12px", borderRadius: "999px", fontSize: "10px", cursor: "pointer",
                                 background: slide === i ? "rgba(97,230,216,0.15)" : "rgba(255,255,255,0.05)",
                                 border: slide === i ? "1px solid rgba(97,230,216,0.4)" : "1px solid rgba(255,255,255,0.08)",
                                 color: slide === i ? "#61E6D8" : "rgba(255,255,255,0.45)",
-                                transition: "all 0.2s ease"
+                                transition: "all 0.2s ease",
                             }}>{lbl}</button>
                         ))}
-                        <div style={{ marginLeft: "auto", display: "flex", gap: "6px", alignItems: "center" }}>
+                        <div style={{ marginLeft: "auto", display: "flex", gap: "5px", alignItems: "center" }}>
                             {Array.from({ length: totalSlides }).map((_, i) => (
                                 <div key={i} onClick={() => goTo(i)} style={{
-                                    width: slide === i ? "20px" : "6px", height: "6px", borderRadius: "99px",
+                                    width: slide === i ? "18px" : "5px", height: "5px", borderRadius: "99px",
                                     background: slide === i ? "#61E6D8" : "rgba(255,255,255,0.2)",
-                                    cursor: "pointer", transition: "all 0.3s ease"
+                                    cursor: "pointer", transition: "all 0.3s ease",
                                 }} />
                             ))}
                         </div>
@@ -1526,7 +1587,7 @@ window.Sprint2Slide = () => {
                         minHeight: 0,
                         opacity: transitioning ? 0 : 1,
                         transform: transitioning ? "translateY(8px)" : "translateY(0)",
-                        transition: "opacity 0.28s ease, transform 0.28s ease"
+                        transition: "opacity 0.28s ease, transform 0.28s ease",
                     }}>
                         <ActiveSlide />
                     </div>
@@ -1542,453 +1603,938 @@ window.Sprint2Slide = () => {
 window.Sprint3Slide = () => {
 
     const [slide, setSlide] = React.useState(0);
-    const [animated, setAnimated] = React.useState(false);
     const [transitioning, setTransitioning] = React.useState(false);
-    const totalSlides = 3;
 
-    // Carousel state for ModulesSlide
     const [modIndex, setModIndex] = React.useState(0);
     const [modTransitioning, setModTransitioning] = React.useState(false);
 
-    React.useEffect(() => {
-        const t = setTimeout(() => setAnimated(true), 400);
-        return () => clearTimeout(t);
-    }, []);
+    const totalSlides = 3;
 
     React.useEffect(() => {
-        const t = setInterval(() => goTo((slide + 1) % totalSlides), 6000);
+        const t = setInterval(() => {
+            goTo((slide + 1) % totalSlides);
+        }, 6000);
+
         return () => clearInterval(t);
+
     }, [slide]);
 
     const goTo = (n) => {
+
         if (transitioning) return;
+
         setTransitioning(true);
-        setTimeout(() => { setSlide(n); setTransitioning(false); }, 300);
+
+        setTimeout(() => {
+
+            setSlide(n);
+            setTransitioning(false);
+
+        }, 260);
+
     };
 
     const goToMod = (n) => {
+
         if (modTransitioning) return;
+
         setModTransitioning(true);
+
         setTimeout(() => {
+
             setModIndex(n);
             setModTransitioning(false);
+
         }, 220);
+
     };
 
-    // ── SLIDE 0: Bar chart — Time per module ──
+    /* -------------------------------- CHART SLIDE -------------------------------- */
+
     const ChartSlide = () => {
+
         const modules = [
-            { label: "Navigation",      manual: 35,  ai: 120 },
-            { label: "Shopping Cart",   manual: 35,  ai: 90  },
-            { label: "Search & Filter", manual: 30,  ai: 225 },
-            { label: "Checkout",        manual: 25,  ai: 120 },
-            { label: "Error Handling",  manual: 15,  ai: 30  },
-            { label: "Product Details", manual: 95,  ai: 55  },
-            { label: "User Account",    manual: 80,  ai: 50  },
+            { label: "Navigation", manual: 35, ai: 120 },
+            { label: "Shopping", manual: 35, ai: 90 },
+            { label: "Search", manual: 30, ai: 225 },
+            { label: "Checkout", manual: 25, ai: 120 },
+            { label: "Errors", manual: 15, ai: 30 },
+            { label: "Product", manual: 95, ai: 55 },
+            { label: "User", manual: 80, ai: 50 },
         ];
+
         const maxVal = 250;
-        const chartH = 180;
-        const barW = 18;
-        const gap = 8;
-        const groupW = barW * 2 + gap;
-        const groupGap = 22;
 
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "2px" }}>
-                    TIME PER MODULE — MANUAL (1 TEST) VS AI-ASSISTED (REST)
+
+            <div
+                style={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                    zoom: 1.2,
+                    transform: "translateY(-6px)"
+                }}
+            >
+
+                <p
+                    style={{
+                        color: "rgba(255,255,255,0.35)",
+                        fontSize: "10px",
+                        letterSpacing: "0.35em"
+                    }}
+                >
+                    TIME PER MODULE
                 </p>
 
-                {/* Legend */}
-                <div style={{ display: "flex", alignItems: "center", gap: "16px", zoom: 1.8 }}>
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "16px",
+                        alignItems: "center"
+                    }}
+                >
+
                     <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/>
-                        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual (1 test)</span>
+                        <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#3758a5" }} />
+                        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)" }}>
+                            Manual
+                        </span>
                     </div>
+
                     <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{ width: "10px", height: "10px", background: "#61E6D8", borderRadius: "2px" }}/>
-                        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>AI-assisted (remaining tests)</span>
+                        <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#61E6D8" }} />
+                        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)" }}>
+                            AI-assisted
+                        </span>
                     </div>
+
                 </div>
 
-                {/* Chart area */}
-                <div style={{ flex: 1, position: "relative", overflow: "hidden", zoom: 1.8 }}>
-                    {[0, 50, 100, 150, 200, 250].map((v, i) => (
-                        <div key={i} style={{
-                            position: "absolute",
-                            left: 0, right: 0,
-                            bottom: `${28 + (v / maxVal) * chartH}px`,
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "6px"
-                        }}>
-                            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "8px", width: "22px", textAlign: "right", flexShrink: 0 }}>{v}m</span>
-                            <div style={{ flex: 1, height: "1px", background: v === 0 ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.05)" }} />
-                        </div>
-                    ))}
-
-                    <div style={{
-                        position: "absolute",
-                        bottom: "28px",
-                        left: "32px",
-                        right: "0",
+                <div
+                    style={{
+                        flex: 1,
                         display: "flex",
                         alignItems: "flex-end",
-                        gap: `${groupGap}px`
-                    }}>
-                        {modules.map((m, i) => (
-                            <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
-                                <div style={{ display: "flex", alignItems: "flex-end", gap: `${gap}px` }}>
-                                    <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                        <span style={{
-                                            fontSize: "8px", color: "rgba(255,255,255,0.5)",
-                                            marginBottom: "2px", position: "absolute",
-                                            bottom: `${animated ? (m.manual / maxVal) * chartH : 0}px`,
-                                            transition: `bottom 0.9s ease ${i * 0.07}s`
-                                        }}>{m.manual}</span>
-                                        <div style={{
-                                            width: `${barW}px`,
-                                            height: animated ? `${(m.manual / maxVal) * chartH}px` : "0px",
-                                            background: "linear-gradient(to top, #2a3f7a, #3b5ea6)",
-                                            borderRadius: "4px 4px 0 0",
-                                            transition: `height 0.9s ease ${i * 0.07}s`
-                                        }} />
-                                    </div>
-                                    <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                        <span style={{
-                                            fontSize: "8px", color: "#61E6D8",
-                                            marginBottom: "2px", position: "absolute",
-                                            bottom: `${animated ? (m.ai / maxVal) * chartH : 0}px`,
-                                            transition: `bottom 0.9s ease ${i * 0.07}s`
-                                        }}>{m.ai}</span>
-                                        <div style={{
-                                            width: `${barW}px`,
-                                            height: animated ? `${(m.ai / maxVal) * chartH}px` : "0px",
-                                            background: "linear-gradient(to top, #2aa89a, #61E6D8)",
-                                            borderRadius: "4px 4px 0 0",
-                                            transition: `height 0.9s ease ${i * 0.07}s`
-                                        }} />
-                                    </div>
+                        justifyContent: "space-around",
+                        paddingBottom: "20px",
+                        zoom:1.5
+                    }}
+                >
+
+                    {
+                        modules.map((m, i) => (
+
+                            <div
+                                key={i}
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    gap: "8px"
+                                }}
+                            >
+
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "flex-end",
+                                        gap: "8px",
+                                        height: "240px"
+                                    }}
+                                >
+
+                                    <div
+                                        style={{
+                                            width: "24px",
+                                            height: `${(m.manual / maxVal) * 220}px`,
+                                            borderRadius: "8px 8px 0 0",
+                                            background: "linear-gradient(to top,#243b77,#3c5ca6)"
+                                        }}
+                                    />
+
+                                    <div
+                                        style={{
+                                            width: "24px",
+                                            height: `${(m.ai / maxVal) * 220}px`,
+                                            borderRadius: "8px 8px 0 0",
+                                            background: "linear-gradient(to top,#2aa696,#61E6D8)"
+                                        }}
+                                    />
+
                                 </div>
-                                <span style={{
-                                    fontSize: "8px", color: "rgba(255,255,255,0.4)",
-                                    textAlign: "center", width: `${groupW}px`,
-                                    lineHeight: "1.2", marginTop: "4px"
-                                }}>{m.label}</span>
+
+                                <span
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "rgba(255,255,255,0.45)"
+                                    }}
+                                >
+                                    {m.label}
+                                </span>
+
                             </div>
-                        ))}
-                    </div>
+
+                        ))
+                    }
+
                 </div>
 
-                <p style={{ color: "rgba(255,255,255,0.22)", fontSize: "9px", lineHeight: "1.5" }}>
-                    AI time includes debugging & refinement. Product Details & User Account: ~55–50 min/TC (post-refactor).
-                </p>
             </div>
+
         );
+
     };
 
-    // ── SLIDE 1: Per-module CAROUSEL ──
+    /* -------------------------------- MODULES SLIDE -------------------------------- */
+
     const ModulesSlide = () => {
+
         const modules = [
-            { icon: "⬜", name: "Navigation & UI",  rows: [["Manual (TC.03)", "~35 min"], ["AI (TC.01, 02, 04)", "~2 hrs total"], ["AI stability", "needed sync fixes", "#FFB86B"], ["AI maintainability", "needed refactor", "#FFB86B"]] },
-            { icon: "🛒", name: "Shopping cart",     rows: [["Manual (add to cart)", "~35 min"], ["AI (4 tests)", "~1.5 hrs total"], ["AI stability", "stale element fixes", "#FFB86B"], ["AI maintainability", "good after refactor", "#61E6D8"]] },
-            { icon: "🔍", name: "Search & filter",   rows: [["Manual (TC.05)", "~30 min"], ["AI (TC.06–12)", "~3 hrs 45 min"], ["AI stability", "most complex", "#FF8DA1"], ["AI maintainability", "repeated filter logic", "#FF8DA1"]] },
-            { icon: "💳", name: "Checkout",          rows: [["Manual (empty cart)", "~25 min"], ["AI (5 tests)", "~2 hrs total"], ["AI stability", "iframe + dynamic UI", "#FFB86B"], ["AI maintainability", "good after refactor", "#61E6D8"]] },
-            { icon: "⚠️", name: "Error handling",    rows: [["Manual (empty cart)", "~15 min"], ["AI (4 tests)", "~30 min"], ["AI stability", "needed corrections", "#FFB86B"], ["Fastest AI module", "✓", "#61E6D8"]] },
-            { icon: "📦", name: "Product details",   rows: [["Manual (TC32)", "~95 min/TC"], ["AI (TC29–31)", "~55 min/TC (post-refactor)"], ["AI speed gain", "42% faster", "#61E6D8"], ["Framework used", "FrameUtils, WaitUtils", null]] },
-            { icon: "👤", name: "User account",      rows: [["Manual (TC28)", "~80 min/TC"], ["AI (TC24–27)", "~50 min/TC (post-refactor)"], ["AI speed gain", "37% faster", "#61E6D8"], ["M1/M2 fix needed", "frame context loss", "#FF8DA1"]] },
+
+            {
+                icon: "⬜",
+                name: "Navigation & UI",
+                rows: [
+                    ["Manual (TC.03)", "~35 min"],
+                    ["AI (TC.01, 02, 04)", "~2 hrs total"],
+                    ["AI stability", "needed sync fixes", "#FFB86B"],
+                    ["AI maintainability", "needed refactor", "#FFB86B"]
+                ]
+            },
+
+            {
+                icon: "🛒",
+                name: "Shopping Cart",
+                rows: [
+                    ["Manual (cart)", "~35 min"],
+                    ["AI (4 tests)", "~1.5 hrs total"],
+                    ["AI stability", "stale fixes", "#FFB86B"],
+                    ["AI maintainability", "good after refactor", "#61E6D8"]
+                ]
+            },
+
+            {
+                icon: "🔍",
+                name: "Search & Filter",
+                rows: [
+                    ["Manual (TC.05)", "~30 min"],
+                    ["AI (TC.06–12)", "~3 hrs 45 min"],
+                    ["AI stability", "most complex", "#FF8DA1"],
+                    ["AI maintainability", "repeated logic", "#FF8DA1"]
+                ]
+            },
+            {
+                icon: "💳",
+                name: "Checkout",
+                rows: [
+                    ["Manual (empty cart)", "~25 min"],
+                    ["AI (5 tests)", "~2 hrs total"],
+                    ["AI stability", "iframe + dynamic UI", "#FF8DA1"],
+                    ["AI maintainability", "good after refactor", "#61E6D8"]
+                ]
+            },
+
+            {
+                icon: "⚠️",
+                name: "Error Handling",
+                rows: [
+                    ["Manual (empty cart)", "~15 min"],
+                    ["AI (4 tests)", "~30 min"],
+                    ["AI stability", "needed corrections", "#FFB86B"],
+                    ["Fastest AI module", "✓", "#61E6D8"]
+                ]
+            },
+
+            {
+                icon: "👕",
+                name: "Product Details",
+                rows: [
+                    ["Manual (TC32)", "~95 min/TC"],
+                    ["AI (TC29–31)", "~55 min/TC"],
+                    ["AI speed gain", "42% faster", "#61E6D8"],
+                    ["Framework used", "FrameUtils, WaitUtils"]
+                ]
+            },
+
+            {
+                icon: "👤",
+                name: "User Account",
+                rows: [
+                    ["Manual (TC28)", "~80 min/TC"],
+                    ["AI (TC24–27)", "~50 min/TC"],
+                    ["AI speed gain", "37% faster", "#61E6D8"],
+                    ["M1/M2 fix needed", "frame context loss", "#FF8DA1"]
+                ]
+            },
+
         ];
 
-        const total = modules.length;
         const mod = modules[modIndex];
 
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "2px" }}>PER-MODULE BREAKDOWN</p>
 
-                {/* Dot nav + counter */}
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-                    {/* Prev */}
-                    <button onClick={() => goToMod((modIndex - 1 + total) % total)} style={{
-                        width: "28px", height: "28px", borderRadius: "50%",
-                        background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                        color: "rgba(255,255,255,0.6)", fontSize: "13px", cursor: "pointer",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        flexShrink: 0, transition: "background 0.2s"
-                    }}>‹</button>
-
-                    {/* Dots */}
-                    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                        {modules.map((m, i) => (
-                            <button key={i} onClick={() => goToMod(i)} title={m.name} style={{
-                                width: modIndex === i ? "22px" : "7px",
-                                height: "7px", borderRadius: "99px",
-                                background: modIndex === i ? "#FFB86B" : "rgba(255,255,255,0.18)",
-                                border: "none", cursor: "pointer",
-                                transition: "all 0.3s ease", padding: 0, flexShrink: 0
-                            }} />
-                        ))}
-                    </div>
-
-                    {/* Next */}
-                    <button onClick={() => goToMod((modIndex + 1) % total)} style={{
-                        width: "28px", height: "28px", borderRadius: "50%",
-                        background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                        color: "rgba(255,255,255,0.6)", fontSize: "13px", cursor: "pointer",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        flexShrink: 0, transition: "background 0.2s"
-                    }}>›</button>
-
-                    <span style={{ marginLeft: "auto", fontSize: "10px", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em" }}>
-                        {modIndex + 1} / {total}
-                    </span>
-                </div>
-
-                {/* Card */}
-                <div style={{
-                    flex: 1,
-                    opacity: modTransitioning ? 0 : 1,
-                    transform: modTransitioning ? "translateX(12px)" : "translateX(0)",
-                    transition: "opacity 0.22s ease, transform 0.22s ease",
+            <div
+                style={{
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "10px"
-                }}>
-                    {/* Main card */}
-                    <div style={{
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "18px",
-                        padding: "22px 24px",
+                    gap: "12px",
+                    zoom: 1.18,
+                    transform: "translateY(-8px)"
+                }}
+            >
+
+                <p
+                    style={{
+                        color: "rgba(255,255,255,0.35)",
+                        fontSize: "10px",
+                        letterSpacing: "0.35em"
+                    }}
+                >
+                    PER-MODULE BREAKDOWN
+                </p>
+
+                {/* TOP NAV */}
+
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px"
+                    }}
+                >
+
+                    <button
+                        onClick={() => goToMod((modIndex - 1 + modules.length) % modules.length)}
+                        className="btn" style={{
+                        fontSize: "10px"
+                    }}
+                    >
+                        ←
+                    </button>
+
+                    {
+                        modules.map((_, i) => (
+
+                            <div
+                                key={i}
+                                onClick={() => goToMod(i)}
+                                style={{
+                                    width: modIndex === i ? "22px" : "6px",
+                                    height: "6px",
+                                    borderRadius: "999px",
+                                    background:
+                                        modIndex === i
+                                            ? "#FFB86B"
+                                            : "rgba(255,255,255,0.2)",
+
+                                    cursor: "pointer",
+                                    transition: "all 0.25s ease"
+                                }}
+                            />
+
+                        ))
+                    }
+
+                    <button
+                        onClick={() => goToMod((modIndex + 1) % modules.length)}
+                        className="btn"
+                        style={{
+                            fontSize: "10px"
+                        }}
+                    >
+                        →
+                    </button>
+
+                    <span
+                        style={{
+                            marginLeft: "auto",
+                            fontSize: "11px",
+                            color: "rgba(255,255,255,0.35)"
+                        }}
+                    >
+                        {modIndex + 1}/{modules.length}
+                    </span>
+
+                </div>
+
+                {/* CARD */}
+
+                <div
+                    style={{
                         flex: 1,
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        borderRadius: "24px",
+                        padding: "24px",
                         display: "flex",
                         flexDirection: "column",
-                        gap: "14px"
-                    }}>
-                        {/* Header */}
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <span style={{ fontSize: "26px" }}>{mod.icon}</span>
-                            <div>
-                                <div style={{ fontSize: "16px", fontWeight: 700, color: "#fff" }}>{mod.name}</div>
-                                <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.15em", marginTop: "2px" }}>MODULE {modIndex + 1} OF {total}</div>
+                        opacity: modTransitioning ? 0 : 1,
+                        transform:
+                            modTransitioning
+                                ? "translateY(10px)"
+                                : "translateY(0)",
+
+                        transition: "all 0.22s ease"
+                    }}
+                >
+
+                    {/* HEADER */}
+
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "14px",
+                            marginBottom: "20px"
+                        }}
+                    >
+
+                        <div
+                            style={{
+                                width: "28px",
+                                height: "28px",
+                                borderRadius: "8px",
+                                background: "linear-gradient(135deg,#ffffff,#d7b8ff)"
+                            }}
+                        />
+
+                        <div>
+
+                            <div
+                                style={{
+                                    fontSize: "18px",
+                                    fontWeight: 700
+                                }}
+                            >
+                                {mod.name}
                             </div>
+
+                            <div
+                                style={{
+                                    fontSize: "10px",
+                                    color: "rgba(255,255,255,0.3)",
+                                    letterSpacing: "0.2em",
+                                    marginTop: "2px"
+                                }}
+                            >
+                                MODULE {modIndex + 1} OF {modules.length}
+                            </div>
+
                         </div>
 
-                        {/* Divider */}
-                        <div style={{ height: "1px", background: "rgba(255,255,255,0.07)" }} />
+                    </div>
 
-                        {/* Rows */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                            {mod.rows.map((row, ri) => (
-                                <div key={ri} style={{
-                                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                                    padding: "8px 12px",
-                                    borderRadius: "10px",
-                                    background: row[2] ? `${row[2]}08` : "rgba(255,255,255,0.02)",
-                                    border: `1px solid ${row[2] ? row[2] + "20" : "rgba(255,255,255,0.05)"}`
-                                }}>
-                                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "12px" }}>{row[0]}</span>
-                                    <span style={{
-                                        fontSize: "12px", fontWeight: row[2] ? 600 : 400,
-                                        color: row[2] || "rgba(255,255,255,0.85)",
-                                        background: row[2] ? `${row[2]}18` : "transparent",
-                                        border: row[2] ? `1px solid ${row[2]}35` : "none",
-                                        padding: row[2] ? "3px 10px" : "0",
-                                        borderRadius: "6px"
-                                    }}>{row[1]}</span>
+                    {/* ROWS */}
+
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px"
+                        }}
+                    >
+
+                        {
+                            mod.rows.map((row, i) => (
+
+                                <div
+                                    key={i}
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                        padding: "14px 16px",
+                                        borderRadius: "12px",
+                                        background: "rgba(255,255,255,0.03)",
+                                        border: "1px solid rgba(255,255,255,0.06)"
+                                    }}
+                                >
+
+                                    <span
+                                        style={{
+                                            fontSize: "13px",
+                                            color: "rgba(255,255,255,0.55)"
+                                        }}
+                                    >
+                                        {row[0]}
+                                    </span>
+
+                                    <span
+                                        style={{
+                                            fontSize: "13px",
+                                            fontWeight: 600,
+                                            color:
+                                                row[2]
+                                                    ? row[2]
+                                                    : "rgba(255,255,255,0.9)",
+
+                                            background:
+                                                row[2]
+                                                    ? `${row[2]}15`
+                                                    : "transparent",
+
+                                            border:
+                                                row[2]
+                                                    ? `1px solid ${row[2]}35`
+                                                    : "none",
+
+                                            padding:
+                                                row[2]
+                                                    ? "6px 12px"
+                                                    : "0",
+
+                                            borderRadius: "10px"
+                                        }}
+                                    >
+                                        {row[1]}
+                                    </span>
+
                                 </div>
-                            ))}
-                        </div>
+
+                            ))
+                        }
+
                     </div>
 
-                    {/* Mini preview strip */}
-                    <div style={{ display: "flex", gap: "6px" }}>
-                        {modules.map((m, i) => (
-                            <button key={i} onClick={() => goToMod(i)} style={{
-                                flex: 1, padding: "7px 4px", borderRadius: "10px",
-                                background: modIndex === i ? "rgba(255,184,107,0.12)" : "rgba(255,255,255,0.03)",
-                                border: modIndex === i ? "1px solid rgba(255,184,107,0.35)" : "1px solid rgba(255,255,255,0.06)",
-                                cursor: "pointer", display: "flex", flexDirection: "column",
-                                alignItems: "center", gap: "3px", transition: "all 0.2s"
-                            }}>
-                                <span style={{ fontSize: "13px" }}>{m.icon}</span>
-                                <span style={{ fontSize: "7px", color: modIndex === i ? "#FFB86B" : "rgba(255,255,255,0.3)", lineHeight: "1.2", textAlign: "center" }}>
-                                    {m.name.split(" ")[0]}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
                 </div>
+
+                {/* BOTTOM MODULES */}
+
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(7,1fr)",
+                        gap: "8px"
+                    }}
+                >
+
+                    {
+                        [
+                            ["⬜","Navigation"],
+                            ["🛒","Shopping"],
+                            ["🔍","Search"],
+                            ["💳","Checkout"],
+                            ["⚠️","Error"],
+                            ["👤","User"]
+                        ].map((m, i) => (
+
+                            <div
+                                key={i}
+                                style={{
+                                    height: "52px",
+                                    borderRadius: "12px",
+                                    background:
+                                        modIndex === i
+                                            ? "rgba(255,184,107,0.12)"
+                                            : "rgba(255,255,255,0.03)",
+
+                                    border:
+                                        modIndex === i
+                                            ? "1px solid rgba(255,184,107,0.35)"
+                                            : "1px solid rgba(255,255,255,0.06)",
+
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    gap: "2px"
+                                }}
+                            >
+
+                                <span style={{ fontSize: "12px" }}>{m[0]}</span>
+
+                                <span
+                                    style={{
+                                        fontSize: "9px",
+                                        color:
+                                            modIndex === i
+                                                ? "#FFB86B"
+                                                : "rgba(255,255,255,0.45)"
+                                    }}
+                                >
+                                    {m[1]}
+                                </span>
+
+                            </div>
+
+                        ))
+                    }
+
+                </div>
+
             </div>
+
         );
+
     };
 
-    // ── SLIDE 2: What each approach does better ──
-    const WinsSlide = () => (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px", zoom: 1.8 }}>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>WHAT EACH APPROACH DOES BETTER</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-                {[
-                    { dot: "#8EA4FF", title: "Manual wins at", items: [
-                            "Stable from the start",
-                            "Cleaner, readable code",
-                            "Page Object design",
-                            "iframe & sync handling",
-                            "Reusable helper methods",
-                        ]},
-                    { dot: "#61E6D8", title: "AI wins at", items: [
-                            "Initial code generation speed",
-                            "Locator identification (CSS)",
-                            "Repetitive Selenium structures",
-                            "Complex validation logic",
-                            "~37–42% overall time saved",
-                        ]},
-                ].map((col, ci) => (
-                    <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: col.dot }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>{col.title}</span>
+    /* -------------------------------- AI VS MANUAL -------------------------------- */
+
+    const FinalSlide = () => (
+
+        <div
+            style={{
+                height: "100%",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "14px",
+                zoom: 1.18
+            }}
+        >
+
+            {
+                [
+                    {
+                        title: "Manual strengths",
+                        color: "#8EA4FF",
+                        items: [
+                            "Better bug intuition",
+                            "Real user perspective",
+                            "More precise bug reports",
+                            "Faster single test creation"
+                        ]
+                    },
+                    {
+                        title: "AI strengths",
+                        color: "#61E6D8",
+                        items: [
+                            "Mass TC generation",
+                            "Structured coverage",
+                            "Regression-ready flows",
+                            "Better scalability"
+                        ]
+                    }
+                ].map((c, i) => (
+
+                    <div
+                        key={i}
+                        style={{
+                            background: "rgba(255,255,255,0.04)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            borderRadius: "24px",
+                            padding: "24px"
+                        }}
+                    >
+
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                marginBottom: "18px"
+                            }}
+                        >
+
+                            <div
+                                style={{
+                                    width: "10px",
+                                    height: "10px",
+                                    borderRadius: "50%",
+                                    background: c.color
+                                }}
+                            />
+
+                            <span
+                                style={{
+                                    fontSize: "18px",
+                                    fontWeight: 700
+                                }}
+                            >
+                                {c.title}
+                            </span>
+
                         </div>
-                        {col.items.map((item, ii) => (
-                            <div key={ii} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "6px 0", borderBottom: ii < col.items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                                <span style={{ color: col.dot, fontSize: "12px" }}>✓</span>
-                                <span style={{ color: "rgba(255,255,255,0.68)", fontSize: "12px" }}>{item}</span>
-                            </div>
-                        ))}
+
+                        {
+                            c.items.map((item, ii) => (
+
+                                <div
+                                    key={ii}
+                                    style={{
+                                        padding: "12px 0",
+                                        borderBottom:
+                                            ii < c.items.length - 1
+                                                ? "1px solid rgba(255,255,255,0.05)"
+                                                : "none",
+
+                                        color: "rgba(255,255,255,0.7)",
+                                        fontSize: "14px"
+                                    }}
+                                >
+                                    ✓ {item}
+                                </div>
+
+                            ))
+                        }
+
                     </div>
-                ))}
-            </div>
-            <div style={{
-                background: "rgba(97,230,216,0.06)",
-                border: "1px solid rgba(97,230,216,0.2)",
-                borderRadius: "12px",
-                padding: "14px 18px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "10px"
-            }}>
-                <span style={{ fontSize: "15px", flexShrink: 0 }}>💡</span>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "11px", lineHeight: "1.7", margin: 0 }}>
-                    Across all 7 modules: AI is ~37–42% faster for initial scripting but requires manual stabilization every time — waits, iframe fixes, locator corrections. The winning pattern: <strong style={{ color: "#61E6D8" }}>AI generates the skeleton, human engineers the architecture</strong> (POM, FrameUtils, WaitUtils). Neither alone is sufficient.
-                </p>
-            </div>
+
+                ))
+            }
+
         </div>
+
     );
 
-    const slides = [ChartSlide, ModulesSlide, WinsSlide];
+    const slides = [ChartSlide, ModulesSlide, FinalSlide];
     const labels = ["Time Chart", "Per Module", "AI vs Manual"];
+
     const ActiveSlide = slides[slide];
 
     return (
-        <SlideRoot>
-            <div style={{ height: "100%", display: "grid", gridTemplateColumns: "0.85fr 1.15fr", position: "relative", overflow: "hidden" }}>
 
-                {/* BG GLOWS */}
-                <div style={{ position: "absolute", width: "700px", height: "700px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,184,107,0.08), transparent 70%)", right: "-150px", bottom: "-150px", filter: "blur(60px)", pointerEvents: "none", zIndex: 0 }} />
-                <div style={{ position: "absolute", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(142,164,255,0.09), transparent 70%)", left: "5%", top: "-80px", filter: "blur(50px)", pointerEvents: "none", zIndex: 0 }} />
+        <SlideRoot
+            style={{
+                zoom: 1.15
+            }}
+        >
 
-                {/* ── LEFT ── */}
-                <div style={{ padding: "52px 40px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2 }}>
+            <div
+                style={{
+                    height: "100%",
+                    display: "grid",
+                    gridTemplateColumns: "0.85fr 1.15fr",
+                    overflow: "hidden",
+                    position: "relative"
+                }}
+            >
+
+                {/* LEFT */}
+
+                <div
+                    style={{
+                        padding: "42px 34px 42px 48px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between"
+                    }}
+                >
 
                     <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
-                            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FFB86B", boxShadow: "0 0 10px #FFB86B", flexShrink: 0 }} />
-                            <p style={{ color: "#FFB86B", letterSpacing: "0.45em", fontSize: "11px", fontWeight: 600 }}>SPRINT 03</p>
+
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                marginBottom: "24px"
+                            }}
+                        >
+
+                            <span
+                                style={{
+                                    width: "7px",
+                                    height: "7px",
+                                    borderRadius: "50%",
+                                    background: "#FFB86B",
+                                    boxShadow: "0 0 10px #FFB86B"
+                                }}
+                            />
+
+                            <p
+                                style={{
+                                    color: "#FFB86B",
+                                    letterSpacing: "0.45em",
+                                    fontSize: "11px",
+                                    fontWeight: 600
+                                }}
+                            >
+                                SPRINT 03
+                            </p>
+
                         </div>
 
-                        <h1 className="display" style={{ fontSize: "clamp(36px,4.4vw,66px)", lineHeight: "0.93", letterSpacing: "-0.04em", marginBottom: "22px" }}>
-                            Human-written<br/>
-                            vs AI-assisted<br/>
-                            <span style={{ background: "linear-gradient(90deg,#fff,#FFB86B)", WebkitBackgroundClip: "text", color: "transparent" }}>
+                        <h1
+                            className="display"
+                            style={{
+                                fontSize: "clamp(52px,5vw,82px)",
+                                lineHeight: "0.92",
+                                letterSpacing: "-0.05em",
+                                marginBottom: "24px"
+                            }}
+                        >
+
+                            Human-written
+                            <br/>
+
+                            vs AI-assisted
+                            <br/>
+
+                            <span
+                                style={{
+                                    background:
+                                        "linear-gradient(90deg,#fff,#FFB86B)",
+
+                                    WebkitBackgroundClip: "text",
+                                    color: "transparent"
+                                }}
+                            >
                                 automation.
                             </span>
+
                         </h1>
 
-                        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "13px", lineHeight: "1.7", maxWidth: "380px" }}>
-                            Selenium · JUnit · Page Object Model · PrestaShop Demo · 7 modules — verified data.
+                        <p
+                            style={{
+                                color: "rgba(255,255,255,0.45)",
+                                fontSize: "14px",
+                                lineHeight: "1.7",
+                                maxWidth: "420px"
+                            }}
+                        >
+                            Selenium · JUnit · Page Object Model ·
+                            PrestaShop Demo · 7 modules analysed.
                         </p>
+
                     </div>
 
                     {/* METRICS */}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-                        {[
-                            { val: "7",     label: "MODULES AUTOMATED", color: "#FFB86B" },
-                            { val: "~37%",  label: "AI FASTER (AVG)",   color: "#61E6D8" },
-                            { val: "100%",  label: "HYBRID APPROACH",   color: "#8EA4FF" },
-                            { val: "POM",   label: "PATTERN USED",      color: "#FF8DA1" },
-                        ].map((m, i) => (
-                            <div key={i} style={{
-                                padding: "14px 16px", borderRadius: "14px",
-                                background: `${m.color}08`,
-                                border: `1px solid ${m.color}25`,
-                                textAlign: "center"
-                            }}>
-                                <div className="display" style={{ fontSize: "clamp(20px,2.2vw,30px)", color: m.color, letterSpacing: "-0.02em" }}>{m.val}</div>
-                                <div style={{ fontSize: "9px", letterSpacing: "0.18em", color: "rgba(255,255,255,0.4)", marginTop: "4px" }}>{m.label}</div>
-                            </div>
-                        ))}
-                    </div>
 
-                    {/* TECH STACK */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                        <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "4px" }}>TECH STACK</p>
-                        {[
-                            { icon: "⚙️", label: "Selenium WebDriver",       color: "#FFB86B" },
-                            { icon: "🧪", label: "JUnit · Page Object Model", color: "#61E6D8" },
-                            { icon: "🔧", label: "FrameUtils · WaitUtils",    color: "#8EA4FF" },
-                        ].map((p, i) => (
-                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "7px 12px", borderRadius: "10px", background: "rgba(255,255,255,0.03)", border: `1px solid ${p.color}25` }}>
-                                <span style={{ fontSize: "13px" }}>{p.icon}</span>
-                                <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "12px" }}>{p.label}</span>
-                            </div>
-                        ))}
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "1fr 1fr",
+                            gap: "12px"
+                        }}
+                    >
+
+                        {
+                            [
+                                ["7", "MODULES AUTOMATED", "#FFB86B"],
+                                ["~37%", "AI FASTER (AVG)", "#61E6D8"],
+                                ["100%", "HYBRID APPROACH", "#8EA4FF"],
+                                ["POM", "PATTERN USED", "#FF8DA1"]
+                            ].map((m, i) => (
+
+                                <div
+                                    key={i}
+                                    style={{
+                                        padding: "20px",
+                                        borderRadius: "18px",
+                                        background: "rgba(255,255,255,0.03)",
+                                        border: "1px solid rgba(255,255,255,0.08)"
+                                    }}
+                                >
+
+                                    <div
+                                        className="display"
+                                        style={{
+                                            fontSize: "46px",
+                                            color: m[2],
+                                            marginBottom: "8px"
+                                        }}
+                                    >
+                                        {m[0]}
+                                    </div>
+
+                                    <div
+                                        style={{
+                                            fontSize: "10px",
+                                            letterSpacing: "0.25em",
+                                            color: "rgba(255,255,255,0.35)"
+                                        }}
+                                    >
+                                        {m[1]}
+                                    </div>
+
+                                </div>
+
+                            ))
+                        }
+
                     </div>
 
                 </div>
 
-                {/* ── RIGHT: SLIDESHOW ── */}
-                <div style={{ padding: "36px 48px 36px 20px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
+                {/* RIGHT */}
 
-                    {/* TABS */}
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0, zoom: 1.3 }}>
-                        {labels.map((lbl, i) => (
-                            <button key={i} onClick={() => goTo(i)} style={{
-                                padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
-                                background: slide === i ? "rgba(255,184,107,0.15)" : "rgba(255,255,255,0.05)",
-                                border: slide === i ? "1px solid rgba(255,184,107,0.4)" : "1px solid rgba(255,255,255,0.08)",
-                                color: slide === i ? "#FFB86B" : "rgba(255,255,255,0.45)",
-                                transition: "all 0.2s ease"
-                            }}>{lbl}</button>
-                        ))}
-                        <div style={{ marginLeft: "auto", display: "flex", gap: "6px", alignItems: "center" }}>
-                            {Array.from({ length: totalSlides }).map((_, i) => (
-                                <div key={i} onClick={() => goTo(i)} style={{
-                                    width: slide === i ? "20px" : "6px", height: "6px", borderRadius: "99px",
-                                    background: slide === i ? "#FFB86B" : "rgba(255,255,255,0.2)",
-                                    cursor: "pointer", transition: "all 0.3s ease"
-                                }} />
-                            ))}
-                        </div>
+                <div
+                    style={{
+                        padding: "26px 36px 26px 14px",
+                        display: "flex",
+                        flexDirection: "column"
+                    }}
+                >
+
+                    {/* TOP TABS */}
+
+                    <div
+                        style={{
+                            display: "flex",
+                            gap: "10px",
+                            marginBottom: "16px",
+
+                        }}
+                    >
+
+                        {
+                            labels.map((lbl, i) => (
+
+                                <button
+                                    key={i}
+                                    onClick={() => goTo(i)}
+                                    style={{
+                                        padding: "10px 18px",
+                                        borderRadius: "999px",
+                                        border:
+                                            slide === i
+                                                ? "1px solid rgba(255,184,107,0.4)"
+                                                : "1px solid rgba(255,255,255,0.08)",
+
+                                        background:
+                                            slide === i
+                                                ? "rgba(255,184,107,0.12)"
+                                                : "rgba(255,255,255,0.04)",
+
+                                        color:
+                                            slide === i
+                                                ? "#FFB86B"
+                                                : "rgba(255,255,255,0.45)",
+
+                                        fontSize: "12px",
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    {lbl}
+                                </button>
+
+                            ))
+                        }
+
                     </div>
 
-                    {/* SLIDE CONTENT */}
-                    <div style={{
-                        flex: 1,
-                        minHeight: 0,
-                        opacity: transitioning ? 0 : 1,
-                        transform: transitioning ? "translateY(8px)" : "translateY(0)",
-                        transition: "opacity 0.3s ease, transform 0.3s ease"
-                    }}>
+                    {/* CONTENT */}
+
+                    <div
+                        style={{
+                            flex: 1,
+                            opacity: transitioning ? 0 : 1,
+                            transform:
+                                transitioning
+                                    ? "translateY(8px)"
+                                    : "translateY(0)",
+
+                            transition:
+                                "opacity 0.26s ease, transform 0.26s ease"
+                        }}
+                    >
+
                         <ActiveSlide />
+
                     </div>
 
                 </div>
 
             </div>
-        </SlideRoot>
-    );
-}
 
+        </SlideRoot>
+
+    );
+
+};
 /* ---------------- AUTOMATION DEMO ---------------- */
 
 window.AutomationDemoSlide = () => {
@@ -2713,7 +3259,7 @@ window.ConclusionSlide = () => {
                 <div style={{ padding: "36px 48px 36px 16px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
 
                     {/* TABS */}
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0 }}>
+                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0, zoom:1.3}}>
                         {labels.map((lbl, i) => (
                             <button key={i} onClick={() => goTo(i)} style={{
                                 padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
