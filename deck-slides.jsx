@@ -1069,7 +1069,7 @@ window.Sprint1Slide = () => {
         {
             icon: "◎",
             label: "STEP 01",
-            text: "Explored 9+ components of the PrestaShop demo - navigation, filters, cart, authentication and more."
+            text: "Explored 8+ components of the PrestaShop demo - navigation, filters, cart, authentication and more."
         },
         {
             icon: "⬡",
@@ -1135,14 +1135,16 @@ window.Sprint1Slide = () => {
                             </span>
                         </h1>
 
-                        <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "14px", lineHeight: "1.7", maxWidth: "500px" }}>
+                        <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "14px", lineHeight: "1.7", maxWidth: "800px", marginBottom: "0px" }}>
                             The tester navigates the PrestaShop app like a real user -
                             no scripts, just instinct and technique.
                             Every defect is logged, classified, and tracked.
                             <br></br>
                             <br></br>
                             <br></br>
-                            Testing performed on: Laptop &middot; Tablet &middot; Mobile devices.
+                            <br></br>
+                            Testing performed on:
+                            <br></br> <p style={{fontWeight: 'bold'}}>Laptop &middot; Tablet &middot; Mobile devices</p>
                             From a real user perspective to defect documentation.
                         </p>
                     </div>
