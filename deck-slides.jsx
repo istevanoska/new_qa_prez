@@ -1385,8 +1385,10 @@ window.Sprint1Slide = () => {
                             Every defect is logged, classified, and tracked.
                             <br></br>
                             <br></br>
+                            <br></br>
                             Testing performed on:
                             <br></br> <p style={{fontWeight: 'bold'}}>Laptop &middot; Tablet &middot; Mobile devices</p>
+                            <br></br>
                             From a real user perspective to defect documentation.
                         </p>
                     </div>
@@ -1626,7 +1628,7 @@ window.Sprint2Slide = () => {
 
         const barData = [
             { label: "Leonida · tablet", manual: 16, ai: 11 },
-            { label: "Tamara · desktop",  manual: 9,  ai: 11 },
+            { label: "Tamara · laptop",  manual: 9,  ai: 11 },
             { label: "Ilina · mobile",  manual: 14, ai: 14 },
         ];
 
@@ -1641,7 +1643,7 @@ window.Sprint2Slide = () => {
                 ],
             },
             {
-                title: "Tamara · desktop · 11 bugs",
+                title: "Tamara · laptop · 11 bugs",
                 segments: [
                     { pct: 18, color: "#d9534f", label: "Critical 18%" },
                     { pct: 45, color: "#e0a03b", label: "High 45%" },
@@ -1829,7 +1831,7 @@ window.Sprint2Slide = () => {
                         </h1>
 
                         <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "12px", lineHeight: "1.65", maxWidth: "340px" }}>
-                            Exploratory · charter-based · AI-generated test cases · 3 testers combined across Desktop, Tablet and Mobile.
+                            Exploratory · charter-based · AI-generated test cases · 3 testers combined across Laptop, Tablet and Mobile.
                         </p>
                     </div>
 
@@ -1852,7 +1854,7 @@ window.Sprint2Slide = () => {
                     <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
                         <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "3px" }}>PLATFORMS TESTED</p>
                         {[
-                            { icon: "🖥", label: "Desktop — Tamara",   color: "#8EA4FF" },
+                            { icon: "💻", label: "Laptop — Tamara",   color: "#8EA4FF" },
                             { icon: "📱", label: "Tablet — Leonida",   color: "#61E6D8" },
                             { icon: "📱", label: "Mobile — Ilina",     color: "#FFB86B" },
                         ].map((p, i) => (
@@ -1907,6 +1909,250 @@ window.Sprint2Slide = () => {
         </SlideRoot>
     );
 }
+
+window.Sprint2GallerySlide = () => {
+
+    const [phase, setPhase] = React.useState("idle");
+    const [visibleCount, setVisibleCount] = React.useState(0);
+    const [recapVisible, setRecapVisible] = React.useState(false);
+    const [lightboxSrc, setLightboxSrc] = React.useState(null);
+    const [hoveredIndex, setHoveredIndex] = React.useState(null);
+
+    const screenshots = [
+        { src: "sprint2/ss1.png",  label: "Task in Taiga Workspace",              rotate: -3  },
+        { src: "sprint2/ss2.png",  label: "Exploratory About Test Charters",            rotate:  2  },
+        { src: "sprint2/ss3.png",  label: "Task in Taiga Workspace",            rotate: -1  },
+        { src: "sprint2/ss4.png",  label: "Exploratory Testing Report",  rotate:  4  },
+        { src: "sprint2/ss5.png",  label: "Defect Report",                       rotate: -4  },
+        { src: "sprint2/ss6.png",  label: "Task in Taiga Workspace",                rotate:  3  },
+        { src: "sprint2/ss7.png",  label: "Test Cases",            rotate: -2  },
+        { src: "sprint2/ss8.png",  label: "Comparative Analysis",  rotate:  5  },
+        { src: "sprint2/ss9.png",  label: "Test Charter",              rotate: -5  },
+        { src: "sprint2/ss10.png", label: "Metrics",            rotate:  2  },
+    ];
+
+    // Големи позиции — реална читлива големина, слободно преклопување
+    const positions = [
+        { top: "-2%",  left: "-1%",  w: "380px", h: "280px" },   // 0 — горе лево, голем
+        { top: "5%",   left: "28%",  w: "340px", h: "260px" },   // 1 — горе центар
+        { top: "-3%",  left: "55%",  w: "400px", h: "290px" },   // 2 — горе десно, најголем
+        { top: "10%",  left: "78%",  w: "320px", h: "250px" },   // 3 — десно средина
+        { top: "38%",  left: "-2%",  w: "360px", h: "270px" },   // 4 — лево средина
+        { top: "32%",  left: "22%",  w: "350px", h: "265px" },   // 5 — центар средина
+        { top: "42%",  left: "50%",  w: "380px", h: "275px" },   // 6 — десно средина
+        { top: "62%",  left: "5%",   w: "330px", h: "255px" },   // 7 — долу лево
+        { top: "58%",  left: "34%",  w: "370px", h: "270px" },   // 8 — долу центар
+        { top: "60%",  left: "66%",  w: "345px", h: "260px" },   // 9 — долу десно
+    ];
+
+    React.useEffect(() => {
+        const t = setTimeout(() => setPhase("flying"), 300);
+        return () => clearTimeout(t);
+    }, []);
+
+    React.useEffect(() => {
+        if (phase !== "flying") return;
+        if (visibleCount < screenshots.length) {
+            const t = setTimeout(() => setVisibleCount(n => n + 1), 200);
+            return () => clearTimeout(t);
+        } else {
+            const t = setTimeout(() => setRecapVisible(true), 700);
+            return () => clearTimeout(t);
+        }
+    }, [phase, visibleCount]);
+
+    return (
+        <SlideRoot>
+
+            {/* LIGHTBOX */}
+            {lightboxSrc && (
+                <div
+                    onClick={() => setLightboxSrc(null)}
+                    style={{
+                        position: "absolute", inset: 0, zIndex: 500,
+                        background: "rgba(0,0,0,0.93)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        cursor: "zoom-out",
+                    }}
+                >
+                    <img src={lightboxSrc} alt="preview" style={{
+                        maxWidth: "88%", maxHeight: "88%",
+                        borderRadius: "18px", objectFit: "contain",
+                        boxShadow: "0 40px 120px rgba(0,0,0,0.8)",
+                    }} />
+                    <div style={{
+                        position: "absolute", top: "24px", right: "32px",
+                        fontSize: "30px", color: "rgba(255,255,255,0.55)",
+                        cursor: "pointer", lineHeight: 1,
+                    }}>✕</div>
+                </div>
+            )}
+
+            {/* BACKGROUND GLOW */}
+            <div style={{
+                position: "absolute", width: "900px", height: "900px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(97,230,216,0.06), transparent 70%)",
+                left: "50%", top: "50%",
+                transform: "translate(-50%, -50%)",
+                filter: "blur(80px)", pointerEvents: "none",
+            }} />
+
+            {/* SCREENSHOT CARDS */}
+            {screenshots.map((ss, i) => {
+                const pos = positions[i];
+                const isVisible = i < visibleCount;
+                const isHovered = hoveredIndex === i;
+
+                return (
+                    <div
+                        key={i}
+                        onMouseEnter={() => isVisible && setHoveredIndex(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        onClick={() => isVisible && setLightboxSrc(ss.src)}
+                        style={{
+                            position: "absolute",
+                            top: pos.top,
+                            left: pos.left,
+                            width: pos.w,
+                            // hover го кренува над сите
+                            zIndex: isHovered ? 90 : 10 + i,
+                            transform: isVisible
+                                ? `rotate(${isHovered ? 0 : ss.rotate}deg) scale(${isHovered ? 1.06 : 1})`
+                                : `rotate(${ss.rotate}deg) translateY(-80px) scale(0.75)`,
+                            opacity: isVisible ? 1 : 0,
+                            transition: [
+                                `opacity 0.5s ease`,
+                                `transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)`,
+                                `z-index 0s`,
+                            ].join(", "),
+                            cursor: isVisible ? "zoom-in" : "default",
+                        }}
+                    >
+                        <div style={{
+                            background: "#0b1929",
+                            border: `1px solid ${isHovered ? "rgba(97,230,216,0.4)" : "rgba(255,255,255,0.11)"}`,
+                            borderRadius: "16px",
+                            overflow: "hidden",
+                            boxShadow: isHovered
+                                ? "0 30px 80px rgba(0,0,0,0.75), 0 0 40px rgba(97,230,216,0.12)"
+                                : "0 16px 50px rgba(0,0,0,0.6)",
+                            transition: "border 0.2s ease, box-shadow 0.2s ease",
+                        }}>
+                            {/* MAC BAR */}
+                            <div style={{
+                                height: "28px",
+                                background: "rgba(255,255,255,0.04)",
+                                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                                display: "flex", alignItems: "center",
+                                padding: "0 12px", gap: "7px", flexShrink: 0,
+                            }}>
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FF6B7A" }} />
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FFB86B" }} />
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#61E6D8" }} />
+                                <span style={{
+                                    marginLeft: "8px", fontSize: "10px",
+                                    color: "rgba(255,255,255,0.28)", letterSpacing: "0.04em",
+                                    fontFamily: "monospace",
+                                }}>
+                                    {ss.label}
+                                </span>
+                            </div>
+                            {/* IMAGE */}
+                            <div style={{ height: pos.h, overflow: "hidden" }}>
+                                <img
+                                    src={ss.src}
+                                    alt={ss.label}
+                                    style={{
+                                        width: "100%", height: "100%",
+                                        objectFit: "cover", objectPosition: "top",
+                                        display: "block",
+                                        transition: "transform 0.3s ease",
+                                        transform: isHovered ? "scale(1.03)" : "scale(1)",
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+
+            {/* SPRINT 1 RECAP — се појавува во центар над сè */}
+            <div style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: recapVisible
+                    ? "translate(-50%, -50%) scale(1)"
+                    : "translate(-50%, -50%) scale(0.82)",
+                opacity: recapVisible ? 1 : 0,
+                transition: "opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)",
+                zIndex: 200,
+                textAlign: "center",
+                pointerEvents: recapVisible ? "auto" : "none",
+                whiteSpace: "nowrap",
+            }}>
+                <div style={{
+                    background: "rgba(5,12,24,0.90)",
+                    border: "1px solid rgba(97,230,216,0.25)",
+                    borderRadius: "32px",
+                    padding: "32px 52px",
+                    backdropFilter: "blur(28px)",
+                    boxShadow: "0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(97,230,216,0.06)",
+                }}>
+
+                    <div style={{
+                        display: "inline-flex", alignItems: "center", gap: "12px",
+                        marginBottom: "24px",
+                    }}>
+                        <span style={{
+                            width: "8px", height: "8px", borderRadius: "50%",
+                            background: "#61E6D8", boxShadow: "0 0 14px #61E6D8",
+                            display: "inline-block",
+                        }} />
+                        <p style={{
+                            color: "#61E6D8", letterSpacing: "0.5em",
+                            fontSize: "13px", fontWeight: 700, margin: 0,
+                        }}>SPRINT 2 RECAP</p>
+                        <span style={{
+                            width: "8px", height: "8px", borderRadius: "50%",
+                            background: "#61E6D8", boxShadow: "0 0 14px #61E6D8",
+                            display: "inline-block",
+                        }} />
+                    </div>
+
+                    <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
+                        {[
+                            { val: "~40%",  label: "Effort Saved"     },
+                            { val: "10x",  label: "Faster TC Creation"  },
+                            { val: "+22%", label: "Defect Coverage" },
+                            { val: "100%",    label: "Traceability (AI)"  },
+                        ].map((s, i) => (
+                            <div key={i} style={{
+                                padding: "16px 28px",
+                                borderRadius: "20px",
+                                background: "rgba(97,230,216,0.06)",
+                                border: "1px solid rgba(97,230,216,0.18)",
+                                minWidth: "96px",
+                            }}>
+                                <div style={{
+                                    fontSize: "34px", fontWeight: 700,
+                                    color: "#fff", letterSpacing: "-0.03em", lineHeight: 1,
+                                }}>{s.val}</div>
+                                <div style={{
+                                    fontSize: "9px", letterSpacing: "0.22em",
+                                    color: "rgba(255,255,255,0.36)", marginTop: "8px",
+                                }}>{s.label.toUpperCase()}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+            </div>
+
+        </SlideRoot>
+    );
+}
+
 /* ---------------- SPRINT 3 ---------------- */
 
 window.Sprint3Slide = () => {
@@ -3825,6 +4071,7 @@ window.Slides = [
     window.Sprint1Slide,
     window.Sprint1GallerySlide,
     window.Sprint2Slide,
+    window.Sprint2GallerySlide,
     window.Sprint3Slide,
     window.AutomationDemoSlide,
     window.ConclusionSlide,
