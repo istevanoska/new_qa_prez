@@ -654,7 +654,8 @@ window.OverviewSlide = () => {
                         flexDirection:"column",
                         justifyContent:"center",
                         position:"relative",
-                        zIndex:2
+                        zIndex:2,
+                        zoom:1.03
                     }}
                 >
 
@@ -3260,7 +3261,7 @@ window.AutomationDemoSlide = () => {
                 style={{
                     height: "100%",
                     display: "grid",
-                    gridTemplateColumns: "0.9fr 1.1fr",
+                    gridTemplateColumns: "0.72fr 1.28fr",
                     position: "relative",
                     overflow: "hidden"
                 }}
@@ -3316,7 +3317,7 @@ window.AutomationDemoSlide = () => {
 
                 <div
                     style={{
-                        padding: "60px 40px 60px 60px",
+                        padding: "52px 10px 52px 48px",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
@@ -3329,26 +3330,26 @@ window.AutomationDemoSlide = () => {
                         style={{
                             display: "flex",
                             alignItems: "center",
-                            gap: "10px",
-                            marginBottom: "24px"
+                            gap: "8px",
+                            marginBottom: "18px"
                         }}
                     >
 
                         <span
                             style={{
-                                width: "8px",
-                                height: "8px",
+                                width: "7px",
+                                height: "7px",
                                 borderRadius: "50%",
                                 background: "#61E6D8",
-                                boxShadow: "0 0 12px #61E6D8"
+                                boxShadow: "0 0 10px #61E6D8"
                             }}
                         />
 
                         <p
                             style={{
                                 color: "#61E6D8",
-                                letterSpacing: "0.4em",
-                                fontSize: "11px",
+                                letterSpacing: "0.32em",
+                                fontSize: "10px",
                                 fontWeight: "600"
                             }}
                         >
@@ -3360,11 +3361,11 @@ window.AutomationDemoSlide = () => {
                     <h1
                         className="display"
                         style={{
-                            fontSize: "clamp(42px,4.6vw,74px)",
-                            lineHeight: "0.9",
+                            fontSize: "clamp(34px,3.8vw,58px)",
+                            lineHeight: "0.92",
                             letterSpacing: "-0.055em",
-                            marginBottom: "18px",
-                            maxWidth: "580px"
+                            marginBottom: "14px",
+                            maxWidth: "420px"
                         }}
                     >
 
@@ -3389,11 +3390,11 @@ window.AutomationDemoSlide = () => {
 
                     <p
                         style={{
-                            color: "rgba(255,255,255,0.55)",
-                            fontSize: "14px",
-                            lineHeight: "1.6",
-                            maxWidth: "430px",
-                            marginBottom: "24px"
+                            color: "rgba(255,255,255,0.52)",
+                            fontSize: "12px",
+                            lineHeight: "1.55",
+                            maxWidth: "320px",
+                            marginBottom: "18px"
                         }}
                     >
                         Live execution of automated UI test cases
@@ -3407,8 +3408,8 @@ window.AutomationDemoSlide = () => {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            gap: "10px",
-                            maxWidth: "520px"
+                            gap: "8px",
+                            maxWidth: "380px"
                         }}
                     >
 
@@ -3426,27 +3427,27 @@ window.AutomationDemoSlide = () => {
                                     style={{
                                         display: "flex",
                                         alignItems: "center",
-                                        gap: "12px",
-                                        padding: "10px 14px",
-                                        borderRadius: "12px",
-                                        background: "rgba(255,255,255,0.04)",
-                                        border: "1px solid rgba(255,255,255,0.08)",
+                                        gap: "10px",
+                                        padding: "8px 12px",
+                                        borderRadius: "10px",
+                                        background: "rgba(255,255,255,0.035)",
+                                        border: "1px solid rgba(255,255,255,0.06)",
                                         backdropFilter: "blur(18px)"
                                     }}
                                 >
 
                                     <div
                                         style={{
-                                            width: "24px",
-                                            height: "24px",
-                                            borderRadius: "8px",
+                                            width: "20px",
+                                            height: "20px",
+                                            borderRadius: "6px",
                                             background: "rgba(97,230,216,0.12)",
                                             border: "1px solid rgba(97,230,216,0.25)",
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
                                             color: "#61E6D8",
-                                            fontSize: "12px",
+                                            fontSize: "10px",
                                             flexShrink: 0
                                         }}
                                     >
@@ -3455,8 +3456,9 @@ window.AutomationDemoSlide = () => {
 
                                     <span
                                         style={{
-                                            color: "rgba(255,255,255,0.78)",
-                                            fontSize: "12px"
+                                            color: "rgba(255,255,255,0.76)",
+                                            fontSize: "10.5px",
+                                            lineHeight: "1.4"
                                         }}
                                     >
                                         {item}
@@ -3475,10 +3477,10 @@ window.AutomationDemoSlide = () => {
 
                 <div
                     style={{
-                        padding: "10px 60px 42px 12px",
+                        padding: "0px 42px 0px 0px",
                         display: "flex",
-                        alignItems: "flex-start",
-                        justifyContent: "center",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
                         position: "relative",
                         zIndex: 2
                     }}
@@ -3487,8 +3489,8 @@ window.AutomationDemoSlide = () => {
                     <div
                         style={{
                             width: "100%",
-                            height: "88%",
-                            borderRadius: "28px",
+                            height: "96%",
+                            borderRadius: "32px",
                             overflow: "hidden",
                             position: "relative",
                             background: "#09111f",
@@ -3505,7 +3507,7 @@ window.AutomationDemoSlide = () => {
 
                         <div
                             style={{
-                                height: "56px",
+                                height: "58px",
                                 borderBottom: "1px solid rgba(255,255,255,0.06)",
                                 display: "flex",
                                 alignItems: "center",
@@ -3548,7 +3550,7 @@ window.AutomationDemoSlide = () => {
                             controls={false}
                             style={{
                                 width: "100%",
-                                height: "calc(100% - 56px)",
+                                height: "calc(100% - 58px)",
                                 objectFit: "cover"
                             }}
                         />
@@ -3558,7 +3560,7 @@ window.AutomationDemoSlide = () => {
                         <div
                             style={{
                                 position: "absolute",
-                                top: "74px",
+                                top: "76px",
                                 left: "18px",
                                 padding: "8px 16px",
                                 borderRadius: "999px",
@@ -3605,6 +3607,7 @@ window.AutomationDemoSlide = () => {
     );
 
 }
+
 /* ---------------- COMPARISON ---------------- */
 
 window.ComparisonSlide = () => (
