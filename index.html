@@ -181,47 +181,48 @@
 
         }
 
-        .btn {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+        .btn{
 
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            background: transparent;
-            backdrop-filter: none;
-            box-shadow: none;
+            width:20px;
+            height:20px;
 
-            color: #ffffff;
-            opacity: 0.35;
+            border-radius:50%;
 
-            cursor: pointer;
-            font-size: 26px;
+            border:1px solid rgba(255,255,255,0.08);
 
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            background:
+                    linear-gradient(
+                            180deg,
+                            rgba(255,255,255,0.08),
+                            rgba(255,255,255,0.03)
+                    );
 
-            transition: all 0.35s ease;
-        }
+            backdrop-filter:blur(20px);
 
-        .btn:hover {
-            transform: translateY(-3px);
+            color:white;
 
-            color: #61E6D8;
-            opacity: 1;
+            cursor:pointer;
 
-            border-color: rgba(97, 230, 216, 0.35);
-            background: linear-gradient(
-                    180deg,
-                    rgba(255, 255, 255, 0.08),
-                    rgba(255, 255, 255, 0.03)
-            );
-            backdrop-filter: blur(20px);
+            font-size:26px;
+
+            transition:0.35s;
 
             box-shadow:
-                    0 0 30px rgba(97, 230, 216, 0.15),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 10px 40px rgba(0, 0, 0, 0.35);
+                    inset 0 1px 0 rgba(255,255,255,0.08),
+                    0 10px 40px rgba(0,0,0,0.35);
+
+        }
+
+        .btn:hover{
+
+            transform:translateY(-3px);
+
+            border-color:rgba(97,230,216,0.35);
+
+            box-shadow:
+                    0 0 30px rgba(97,230,216,0.15),
+                    inset 0 1px 0 rgba(255,255,255,0.1);
+
         }
 
     </style>
