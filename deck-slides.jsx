@@ -301,7 +301,7 @@ window.OverviewSlide = () => {
     const tools = [
         {
             "id": 1,
-            "name": "Qaze"
+            "name": "Qase"
         },
         {
             "id": 2,
