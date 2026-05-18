@@ -150,9 +150,10 @@ window.TitleSlide = () => (
                         marginInline: "auto"
                     }}
                 >
-                    Exploring manual, exploratory and automated testing
-                    workflows while comparing traditional QA processes
-                    with AI-assisted testing solutions.
+                    Manual, Exploratory, and Automated Testing
+                    {/*Exploring manual, exploratory and automated testing*/}
+                    {/*workflows while comparing traditional QA processes*/}
+                    {/*with AI-assisted testing solutions.*/}
                 </p>
 
                 {/* TAGS */}
