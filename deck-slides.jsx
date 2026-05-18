@@ -332,7 +332,8 @@ window.OverviewSlide = () => {
                     display:"grid",
                     gridTemplateColumns:"1fr 1fr",
                     position:"relative",
-                    overflow:"hidden"
+                    overflow:"hidden",
+                    zoom:0.95
                 }}
             >
 
@@ -1141,8 +1142,6 @@ window.Sprint1Slide = () => {
                             Every defect is logged, classified, and tracked.
                             <br></br>
                             <br></br>
-                            <br></br>
-                            <br></br>
                             Testing performed on:
                             <br></br> <p style={{fontWeight: 'bold'}}>Laptop &middot; Tablet &middot; Mobile devices</p>
                             From a real user perspective to defect documentation.
@@ -1157,6 +1156,7 @@ window.Sprint1Slide = () => {
                         padding: "20px 24px",
                         maxWidth: "460px",
                         boxShadow: "0 0 40px rgba(97,230,216,0.06)",
+                        // zoom:0.5
                     }}>
                         {/* card header */}
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
