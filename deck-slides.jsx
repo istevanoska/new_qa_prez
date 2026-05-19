@@ -288,6 +288,7 @@ window.TitleSlide = () => (
 
 )
 
+
 /* ---------------- OVERVIEW ---------------- */
 
 window.OverviewSlide = () => {
@@ -463,8 +464,9 @@ window.OverviewSlide = () => {
 
                     <div
                         style={{
+                            marginTop:"9px",
                             position:"relative",
-                            height:"370px",
+                            height:"400px",
                             overflow:"hidden",
                             background:"#09111f",
                             borderRadius:"18px",
@@ -822,7 +824,7 @@ window.OverviewSlide = () => {
 
                                                 <span
                                                     style={{
-                                                        fontSize:"10px",
+                                                        fontSize:"12px",
                                                         fontWeight:800,
                                                         color:t.color,
                                                         fontFamily:"monospace"
@@ -938,7 +940,7 @@ window.OverviewSlide = () => {
                                         <p
                                             style={{
                                                 color: group.color,
-                                                fontSize: "9px",
+                                                fontSize: "11px",
                                                 letterSpacing: "0.18em",
                                                 marginBottom: "10px",
                                                 fontWeight: "700",
@@ -1386,9 +1388,11 @@ window.Sprint1Slide = () => {
                             Every defect is logged, classified, and tracked.
                             <br></br>
                             <br></br>
+                            <div style={{marginTop: "18px"}}>
                             Testing performed on:
                             <br></br> <p style={{fontWeight: 'bold'}}>Laptop &middot; Tablet &middot; Mobile devices</p>
                             From a real user perspective to defect documentation.
+                            </div>
                         </p>
                     </div>
 
@@ -1511,7 +1515,7 @@ window.Sprint1Slide = () => {
                                 padding: "6px 13px", borderRadius: "999px",
                                 background: "rgba(97,230,216,0.07)",
                                 border: "1px solid rgba(97,230,216,0.15)",
-                                color: "rgba(97,230,216,0.8)", fontSize: "11px"
+                                color: "rgba(97,230,216,0.8)", fontSize: "13px"
                             }}>{t}</div>
                         ))}
                     </div>
@@ -2125,6 +2129,249 @@ window.Sprint2GallerySlide = () => {
                             { val: "10x",  label: "Faster TC Creation"  },
                             { val: "+22%", label: "Defect Coverage" },
                             { val: "100%",    label: "Traceability (AI)"  },
+                        ].map((s, i) => (
+                            <div key={i} style={{
+                                padding: "16px 28px",
+                                borderRadius: "20px",
+                                background: "rgba(97,230,216,0.06)",
+                                border: "1px solid rgba(97,230,216,0.18)",
+                                minWidth: "96px",
+                            }}>
+                                <div style={{
+                                    fontSize: "34px", fontWeight: 700,
+                                    color: "#fff", letterSpacing: "-0.03em", lineHeight: 1,
+                                }}>{s.val}</div>
+                                <div style={{
+                                    fontSize: "9px", letterSpacing: "0.22em",
+                                    color: "rgba(255,255,255,0.36)", marginTop: "8px",
+                                }}>{s.label.toUpperCase()}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+            </div>
+
+        </SlideRoot>
+    );
+}
+
+window.Sprint3GallerySlide = () => {
+
+    const [phase, setPhase] = React.useState("idle");
+    const [visibleCount, setVisibleCount] = React.useState(0);
+    const [recapVisible, setRecapVisible] = React.useState(false);
+    const [lightboxSrc, setLightboxSrc] = React.useState(null);
+    const [hoveredIndex, setHoveredIndex] = React.useState(null);
+
+    const screenshots = [
+        { src: "screenshots/sprint3/ss1.png",  label: "Taiga Workspace Sprint 2",              rotate: -3  },
+        { src: "screenshots/sprint3/ss2.png",  label: "Taiga Workspace Task",            rotate:  2  },
+        { src: "screenshots/sprint3/ss3.png",  label: "Comparison Report",            rotate: -1  },
+        { src: "screenshots/sprint3/ss4.png",  label: "Comparison Report",  rotate:  4  },
+        { src: "screenshots/sprint3/ss5.png",  label: "README.md on Github",                       rotate: -4  },
+        { src: "screenshots/sprint3/ss6.png",  label: "AI Automated Test",                rotate:  3  },
+        { src: "screenshots/sprint3/ss7.png",  label: "Review with AI",            rotate: -2  },
+        { src: "screenshots/sprint3/ss8.png",  label: "Human-written Test",  rotate:  5  },
+        { src: "screenshots/sprint3/ss9.png",  label: "Review pushed on Github",              rotate: -5  },
+        { src: "screenshots/sprint3/ss10.png", label: "Passes Tests after Execution",            rotate:  2  },
+    ];
+
+    // Големи позиции — реална читлива големина, слободно преклопување
+    const positions = [
+        { top: "-2%",  left: "-1%",  w: "380px", h: "280px" },   // 0 — горе лево, голем
+        { top: "5%",   left: "28%",  w: "340px", h: "260px" },   // 1 — горе центар
+        { top: "-3%",  left: "55%",  w: "400px", h: "290px" },   // 2 — горе десно, најголем
+        { top: "10%",  left: "78%",  w: "320px", h: "250px" },   // 3 — десно средина
+        { top: "38%",  left: "-2%",  w: "360px", h: "270px" },   // 4 — лево средина
+        { top: "32%",  left: "22%",  w: "350px", h: "265px" },   // 5 — центар средина
+        { top: "42%",  left: "50%",  w: "380px", h: "275px" },   // 6 — десно средина
+        { top: "62%",  left: "5%",   w: "330px", h: "255px" },   // 7 — долу лево
+        { top: "58%",  left: "34%",  w: "370px", h: "270px" },   // 8 — долу центар
+        { top: "60%",  left: "66%",  w: "345px", h: "260px" },   // 9 — долу десно
+    ];
+
+    React.useEffect(() => {
+        const t = setTimeout(() => setPhase("flying"), 300);
+        return () => clearTimeout(t);
+    }, []);
+
+    React.useEffect(() => {
+        if (phase !== "flying") return;
+        if (visibleCount < screenshots.length) {
+            const t = setTimeout(() => setVisibleCount(n => n + 1), 200);
+            return () => clearTimeout(t);
+        } else {
+            const t = setTimeout(() => setRecapVisible(true), 700);
+            return () => clearTimeout(t);
+        }
+    }, [phase, visibleCount]);
+
+    return (
+        <SlideRoot>
+
+            {/* LIGHTBOX */}
+            {lightboxSrc && (
+                <div
+                    onClick={() => setLightboxSrc(null)}
+                    style={{
+                        position: "absolute", inset: 0, zIndex: 500,
+                        background: "rgba(0,0,0,0.93)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        cursor: "zoom-out",
+                    }}
+                >
+                    <img src={lightboxSrc} alt="preview" style={{
+                        maxWidth: "88%", maxHeight: "88%",
+                        borderRadius: "18px", objectFit: "contain",
+                        boxShadow: "0 40px 120px rgba(0,0,0,0.8)",
+                    }} />
+                    <div style={{
+                        position: "absolute", top: "24px", right: "32px",
+                        fontSize: "30px", color: "rgba(255,255,255,0.55)",
+                        cursor: "pointer", lineHeight: 1,
+                    }}>✕</div>
+                </div>
+            )}
+
+            {/* BACKGROUND GLOW */}
+            <div style={{
+                position: "absolute", width: "900px", height: "900px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(97,230,216,0.06), transparent 70%)",
+                left: "50%", top: "50%",
+                transform: "translate(-50%, -50%)",
+                filter: "blur(80px)", pointerEvents: "none",
+            }} />
+
+            {/* SCREENSHOT CARDS */}
+            {screenshots.map((ss, i) => {
+                const pos = positions[i];
+                const isVisible = i < visibleCount;
+                const isHovered = hoveredIndex === i;
+
+                return (
+                    <div
+                        key={i}
+                        onMouseEnter={() => isVisible && setHoveredIndex(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        onClick={() => isVisible && setLightboxSrc(ss.src)}
+                        style={{
+                            position: "absolute",
+                            top: pos.top,
+                            left: pos.left,
+                            width: pos.w,
+                            // hover го кренува над сите
+                            zIndex: isHovered ? 90 : 10 + i,
+                            transform: isVisible
+                                ? `rotate(${isHovered ? 0 : ss.rotate}deg) scale(${isHovered ? 1.06 : 1})`
+                                : `rotate(${ss.rotate}deg) translateY(-80px) scale(0.75)`,
+                            opacity: isVisible ? 1 : 0,
+                            transition: [
+                                `opacity 0.5s ease`,
+                                `transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)`,
+                                `z-index 0s`,
+                            ].join(", "),
+                            cursor: isVisible ? "zoom-in" : "default",
+                        }}
+                    >
+                        <div style={{
+                            background: "#0b1929",
+                            border: `1px solid ${isHovered ? "rgba(97,230,216,0.4)" : "rgba(255,255,255,0.11)"}`,
+                            borderRadius: "16px",
+                            overflow: "hidden",
+                            boxShadow: isHovered
+                                ? "0 30px 80px rgba(0,0,0,0.75), 0 0 40px rgba(97,230,216,0.12)"
+                                : "0 16px 50px rgba(0,0,0,0.6)",
+                            transition: "border 0.2s ease, box-shadow 0.2s ease",
+                        }}>
+                            {/* MAC BAR */}
+                            <div style={{
+                                height: "28px",
+                                background: "rgba(255,255,255,0.04)",
+                                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                                display: "flex", alignItems: "center",
+                                padding: "0 12px", gap: "7px", flexShrink: 0,
+                            }}>
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FF6B7A" }} />
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FFB86B" }} />
+                                <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#61E6D8" }} />
+                                <span style={{
+                                    marginLeft: "8px", fontSize: "10px",
+                                    color: "rgba(255,255,255,0.28)", letterSpacing: "0.04em",
+                                    fontFamily: "monospace",
+                                }}>
+                                    {ss.label}
+                                </span>
+                            </div>
+                            {/* IMAGE */}
+                            <div style={{ height: pos.h, overflow: "hidden" }}>
+                                <img
+                                    src={ss.src}
+                                    alt={ss.label}
+                                    style={{
+                                        width: "100%", height: "100%",
+                                        objectFit: "cover", objectPosition: "top",
+                                        display: "block",
+                                        transition: "transform 0.3s ease",
+                                        transform: isHovered ? "scale(1.03)" : "scale(1)",
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+
+            {/* SPRINT 1 RECAP — се појавува во центар над сè */}
+            <div style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: recapVisible
+                    ? "translate(-50%, -50%) scale(1)"
+                    : "translate(-50%, -50%) scale(0.82)",
+                opacity: recapVisible ? 1 : 0,
+                transition: "opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)",
+                zIndex: 200,
+                textAlign: "center",
+                pointerEvents: recapVisible ? "auto" : "none",
+                whiteSpace: "nowrap",
+            }}>
+                <div style={{
+                    background: "rgba(5,12,24,0.90)",
+                    border: "1px solid rgba(97,230,216,0.25)",
+                    borderRadius: "32px",
+                    padding: "32px 52px",
+                    backdropFilter: "blur(28px)",
+                    boxShadow: "0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(97,230,216,0.06)",
+                }}>
+
+                    <div style={{
+                        display: "inline-flex", alignItems: "center", gap: "12px",
+                        marginBottom: "24px",
+                    }}>
+                        <span style={{
+                            width: "8px", height: "8px", borderRadius: "50%",
+                            background: "#61E6D8", boxShadow: "0 0 14px #61E6D8",
+                            display: "inline-block",
+                        }} />
+                        <p style={{
+                            color: "#61E6D8", letterSpacing: "0.5em",
+                            fontSize: "13px", fontWeight: 700, margin: 0,
+                        }}>SPRINT 3 RECAP</p>
+                        <span style={{
+                            width: "8px", height: "8px", borderRadius: "50%",
+                            background: "#61E6D8", boxShadow: "0 0 14px #61E6D8",
+                            display: "inline-block",
+                        }} />
+                    </div>
+
+                    <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
+                        {[
+                            { val: "7",  label: "Modules automated"     },
+                            { val: "~37%",  label: "AI Faster (AVG)"  },
+                            { val: "100%", label: "Hybrid approach" },
+                            { val: "POM",    label: "Pattern used"  },
                         ].map((s, i) => (
                             <div key={i} style={{
                                 padding: "16px 28px",
@@ -4013,6 +4260,141 @@ window.ConclusionSlide = () => {
         </SlideRoot>
     );
 }
+
+window.Team = () => {
+
+    const team = [
+        {
+            name: "Tamara Stojanoska",
+            role: "Working on this project",
+            image: "screenshots/tamara.png"
+        },
+        {
+            name: "Ilina Stevanoska",
+            role: "Working on this project",
+            image: "screenshots/ilina.png"
+        },
+        {
+            name: "Leonida Kostova",
+            role: "Working on this project",
+            image: "screenshots/leonida.png"
+        }
+    ];
+
+    return (
+        <SlideRoot>
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    padding: "70px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center"
+                }}
+            >
+
+                <div style={{ marginBottom: "60px" }}>
+                    <p
+                        style={{
+                            color: "#61E6D8",
+                            letterSpacing: "0.35em",
+                            fontSize: "13px",
+                            marginBottom: "18px"
+                        }}
+                    >
+                        OUR TEAM
+                    </p>
+
+                    <h1
+                        style={{
+                            fontSize: "64px",
+                            color: "white",
+                            margin: 0,
+                            fontWeight: 800,
+                            lineHeight: 1
+                        }}
+                    >
+                        Meet The Team
+                    </h1>
+                </div>
+
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "32px",
+                        justifyContent: "center"
+                    }}
+                >
+                    {
+                        team.map((member, index) => (
+
+                            <div
+                                key={index}
+                                style={{
+                                    width: "320px",
+                                    borderRadius: "32px",
+                                    overflow: "hidden",
+                                    background: "rgba(255,255,255,0.05)",
+                                    border: "1px solid rgba(255,255,255,0.08)",
+                                    transition: "0.3s"
+                                }}
+                            >
+
+                                <div
+                                    style={{
+                                        height: "380px",
+                                        overflow: "hidden"
+                                    }}
+                                >
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover"
+                                        }}
+                                    />
+                                </div>
+
+                                <div
+                                    style={{
+                                        padding: "24px"
+                                    }}
+                                    lock>
+                                    <h2
+                                        style={{
+                                            color: "white",
+                                            margin: 0,
+                                            fontSize: "28px",
+                                            marginBottom: "8px"
+                                        }}
+                                    >
+                                        {member.name}
+                                    </h2>
+
+                                    <p
+                                        style={{
+                                            color: "rgba(255,255,255,0.65)",
+                                            margin: 0,
+                                            fontSize: "15px"
+                                        }}
+                                    >
+                                        {member.role}
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        ))
+                    }
+                </div>
+
+            </div>
+        </SlideRoot>
+    );
+};
 /* ---------------- FINAL ---------------- */
 
 window.FinalSlide = () => (
@@ -4074,8 +4456,9 @@ window.Slides = [
     window.Sprint2Slide,
     window.Sprint2GallerySlide,
     window.Sprint3Slide,
+    window.Sprint3GallerySlide,
     window.AutomationDemoSlide,
     window.ConclusionSlide,
     window.FinalSlide,
-
+    window.Team,
 ]

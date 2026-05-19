@@ -181,99 +181,52 @@
 
         }
 
-        /* FULL TRANSPARENT BUTTONS */
+        .btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
 
-        .btn{
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
 
-            width:56px;
-            height:56px;
+            color: #ffffff;
+            opacity: 0.35;
 
-            border-radius:50%;
+            cursor: pointer;
+            font-size: 26px;
 
-            border:1.5px solid rgba(255,255,255,0.14);
+            /* Центрирање на иконата */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-            background:transparent !important;
-
-            backdrop-filter:none;
-
-            color:rgba(255,255,255,0.88);
-
-            cursor:pointer;
-
-            font-size:26px;
-
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            transition:
-                    background 0.35s ease,
-                    border-color 0.35s ease,
-                    transform 0.35s ease,
-                    box-shadow 0.35s ease,
-                    color 0.35s ease;
-
-            box-shadow:none;
-
-            position:relative;
-
-            overflow:hidden;
-
+            /* Мазна транзиција за сите промени, вклучувајќи го и opacity */
+            transition: all 0.35s ease;
         }
 
-        .btn::before{
+        .btn:hover {
+            transform: translateY(-3px);
 
-            content:"";
+            /* При hover стрелката станува 100% видлива и ја менува бојата во цијан */
+            color: #61E6D8;
+            opacity: 1;
 
-            position:absolute;
-
-            inset:0;
-
-            border-radius:50%;
-
-            background:
-                    linear-gradient(
-                            135deg,
-                            rgba(97,230,216,0.16),
-                            rgba(142,164,255,0.16)
-                    );
-
-            opacity:0;
-
-            transition:opacity 0.35s ease;
-
-            z-index:0;
-
-        }
-
-        .btn span,
-        .btn svg{
-
-            position:relative;
-            z-index:2;
-
-        }
-
-        .btn:hover{
-
-            transform:translateY(-4px) scale(1.05);
-
-            border-color:rgba(97,230,216,0.45);
-
-            color:white;
+            /* Стаклен ефект и сјај за позадината на копчето */
+            border-color: rgba(97, 230, 216, 0.35);
+            background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.08),
+                    rgba(255, 255, 255, 0.03)
+            );
+            backdrop-filter: blur(20px);
 
             box-shadow:
-                    0 0 25px rgba(97,230,216,0.12),
-                    0 0 60px rgba(142,164,255,0.08);
-
+                    0 0 30px rgba(97, 230, 216, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 10px 40px rgba(0, 0, 0, 0.35);
         }
-
-        .btn:hover::before{
-
-            opacity:1;
-
-        }
-
     </style>
 
 </head>
