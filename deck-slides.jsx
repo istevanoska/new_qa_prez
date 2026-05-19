@@ -1689,7 +1689,7 @@ window.Sprint2Slide = () => {
                     </div>
 
                     {/* Bars */}
-                    <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", height: "100px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", height: "100px", marginTop: "40px" }}>
                         {barData.map((item, i) => (
                             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
                                 <div style={{ display: "flex", alignItems: "flex-end", gap: "6px", height: "72px" }}>
@@ -2478,7 +2478,7 @@ window.Sprint3Slide = () => {
             { label: "Search & Filter", manual: 30, ai: 225 },
             { label: "Checkout", manual: 25, ai: 120 },
             { label: "Error Handling", manual: 15, ai: 30 },
-            { label: "Product Details", manual: 95, ai: 55 },
+            { label: "Product Detail", manual: 95, ai: 55 },
             { label: "User Account", manual: 80, ai: 50 },
         ];
 
@@ -2519,7 +2519,7 @@ window.Sprint3Slide = () => {
                         borderRadius: "24px",
                         padding: "20px 24px 18px 24px",
                         display: "flex",
-                        flexDirection: "column"
+                        flexDirection: "column",
                     }}
                 >
 
@@ -4007,7 +4007,7 @@ window.ConclusionSlide = () => {
             {/* Metrics row */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "8px" }}>
                 {[
-                    { val: "~37–42%", label: "FASTER WITH AI",     color: "#61E6D8" },
+                    { val: "37–42%", label: "FASTER WITH AI",     color: "#61E6D8" },
                     { val: "10×",     label: "FASTER TC CREATION",  color: "#8EA4FF" },
                     { val: "+22%",    label: "DEFECT COVERAGE",     color: "#FFB86B" },
                     { val: "100%",    label: "AI TRACEABILITY",     color: "#FF8DA1" },
@@ -4073,7 +4073,7 @@ window.ConclusionSlide = () => {
     // ── SLIDE 1: Who, when & why + Division of responsibilities ──
     const ResponsibilitiesSlide = () => (
         <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>AI VS HUMAN — WHO, WHEN & WHY</p>
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>AI VS HUMAN - WHO, WHEN & WHY</p>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px" }}>Optimal division of responsibilities and the best AI tool for each task</p>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", zoom:1.4 }}>
@@ -4188,7 +4188,7 @@ window.ConclusionSlide = () => {
                         </h1>
 
                         <p style={{ color: "rgba(255,255,255,0.42)", fontSize: "12px", lineHeight: "1.7", maxWidth: "320px" }}>
-                            Key takeaways across all sprints — test automation & exploratory testing.
+                            Key takeaways across all sprints - test automation & exploratory testing.
                         </p>
                     </div>
 
@@ -4196,7 +4196,7 @@ window.ConclusionSlide = () => {
                     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                         <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "4px" }}>SPRINT JOURNEY</p>
                         {[
-                            { label: "Sprint 1", desc: "Exploratory testing · 32+ bugs · 25+ TCs",  color: "#61E6D8" },
+                            { label: "Sprint 1", desc: "Exploratory testing · 32+ bugs · 50+ TCs",  color: "#61E6D8" },
                             { label: "Sprint 2", desc: "Manual vs AI · 3 testers · 3 platforms",     color: "#8EA4FF" },
                             { label: "Sprint 3", desc: "Selenium automation · 7 modules · ~37% AI+", color: "#FFB86B" },
                         ].map((s, i) => (
@@ -4214,7 +4214,7 @@ window.ConclusionSlide = () => {
                     <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", marginTop: "10px" }}>
                         <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "8px", letterSpacing: "0.3em", marginBottom: "8px" }}>FINAL VERDICT</p>
                         <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "12px", lineHeight: "1.65", margin: 0 }}>
-                            AI + Human together outperform either approach alone — every time.
+                            AI + Human together outperform either approach alone - every time.
                         </p>
                     </div>
 
@@ -4459,6 +4459,6 @@ window.Slides = [
     window.Sprint3GallerySlide,
     window.AutomationDemoSlide,
     window.ConclusionSlide,
-    window.FinalSlide,
     window.Team,
+    window.FinalSlide,
 ]
