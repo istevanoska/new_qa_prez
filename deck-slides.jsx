@@ -4128,7 +4128,7 @@ window.ConclusionSlide = () => {
             { name: "GitHub Copilot",        desc: "Inline autocomplete in IDE, repetitive Selenium methods, fast assertion generation directly in code",          tag: "IDE integration",    tagColor: "#A8FFD8" },
             { name: "Gemini (Google)",       desc: "Log file analysis, quick documentation lookup, integration with Google Workspace reports",                     tag: "analysis & logs",    tagColor: "#FFB86B" },
             { name: "Perplexity / web AI",   desc: "Researching framework options, current Selenium/JUnit best practices, resolving specific errors",              tag: "research",           tagColor: "#FF8DA1" },
-            { name: "Any AI model",          desc: "Should never replace the tester's final decision — AI makes mistakes with locators, waits, and iframe context", tag: "support only",       tagColor: "#888" },
+            { name: "Any AI model",          desc: "Should never replace the tester's final decision - AI makes mistakes with locators, waits, and iframe context", tag: "support only",       tagColor: "#888" },
         ];
         return (
             <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -4151,7 +4151,7 @@ window.ConclusionSlide = () => {
                 <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px", zoom:1.3 }}>
                     <span style={{ fontSize: "14px", flexShrink: 0 }}>⇄</span>
                     <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
-                        <strong style={{ color: "#61E6D8" }}>Optimal workflow:</strong> Explore manually first → AI generates skeleton & test cases → Engineer builds POM architecture → AI fills in edge cases → Human finalizes, stabilizes & verifies. Neither AI nor human alone is enough — <strong style={{ color: "#fff" }}>the win is in the synergy.</strong>
+                        <strong style={{ color: "#61E6D8" }}>Optimal workflow:</strong> Explore manually first → AI generates skeleton & test cases → Engineer builds POM architecture → AI fills in edge cases → Human finalizes, stabilizes & verifies. Neither AI nor human alone is enough - <strong style={{ color: "#fff" }}>the win is in the synergy.</strong>
                     </p>
                 </div>
             </div>
