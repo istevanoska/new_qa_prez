@@ -4078,22 +4078,30 @@ window.ConclusionSlide = () => {
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", zoom:1.4 }}>
                 {[
-                    { dot: "#8EA4FF", title: "Human is required", items: [
-                            "Page Object Model architecture",
-                            "iframe & sync wait stabilization",
-                            "Discovering unknown, unexpected bugs",
-                            "Final validation & code review",
-                            "Tester intuition & contextual reasoning",
-                            "Helper methods: FrameUtils, WaitUtils",
-                        ]},
-                    { dot: "#61E6D8", title: "Ideal for AI", items: [
-                            "Generating test code skeleton (37–42% faster)",
-                            "Bulk test case creation (10× faster)",
-                            "CSS locator identification",
-                            "Edge cases & security scenarios",
-                            "Regression-ready structured documentation",
-                            "Complex validation logic",
-                        ]},
+                    {
+                        dot: "#8EA4FF",
+                        title: "What we realized during development",
+                        items: [
+                            "Stable automation is harder than generating tests",
+                            "Most time was spent debugging synchronization issues",
+                            "Exploratory testing revealed the most critical bugs",
+                            "Readable architecture mattered more than test quantity",
+                            "Human review significantly improved AI-generated output",
+                            "Reliable frameworks require continuous refinement",
+                        ]
+                    },
+                    {
+                        dot: "#61E6D8",
+                        title: "Key insights from using AI",
+                        items: [
+                            "AI drastically accelerated repetitive QA tasks",
+                            "Generated code still required engineering validation",
+                            "AI performed best with precise prompts & structure",
+                            "Documentation became faster and more consistent",
+                            "Combining AI with manual testing produced best results",
+                            "AI increased productivity without replacing testers",
+                        ]
+                    },
                 ].map((col, ci) => (
                     <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "14px", padding: "16px 18px" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
